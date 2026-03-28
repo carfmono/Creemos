@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CREEMOS — Congreso 2026 | Dashboard Electoral</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --verde:    #26841E;
+      --verde-c:  #1a5c14;
+      --verde-l:  #e8f5e3;
+      --amarillo: #BFDD09;
+      --gris:     #1e2a1e;
+      --gris-m:   #4a5c4a;
+      --gris-l:   #f5f7f5;
+      --borde:    #d4e8d0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gris-l); color: var(--gris); }
+
+    /* HEADER */
+    header {
+      background: var(--verde);
+      color: #fff;
+      padding: 28px 40px 22px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-area h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; }
+    .logo-area h1 span { color: var(--amarillo); }
+    .logo-area p  { font-size: 0.9rem; opacity: 0.85; margin-top: 4px; }
+    .badge {
+      background: var(--amarillo); color: var(--gris); font-weight: 700;
+      font-size: 0.8rem; padding: 6px 14px; border-radius: 20px; text-align: center;
+    }
+    .badge small { display: block; font-weight: 400; font-size: 0.72rem; }
+
+    /* FUENTE */
+    .fuente-banner {
+      background: #fff; border-left: 4px solid var(--verde);
+      padding: 8px 40px; font-size: 0.78rem; color: var(--gris-m);
+    }
+
+    main { max-width: 1300px; margin: 0 auto; padding: 28px 24px 60px; }
+
+    /* CARDS RESUMEN */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .card {
+      background: #fff; border-radius: 12px; padding: 22px 24px;
+      border-top: 4px solid var(--verde); box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    }
+    .card .num   { font-size: 2.1rem; font-weight: 800; color: var(--verde); line-height: 1; }
+    .card .label { font-size: 0.82rem; color: var(--gris-m); margin-top: 4px; }
+    .card .sub   { font-size: 0.75rem; color: #888; margin-top: 2px; }
+    .card.accent { border-top-color: var(--amarillo); }
+    .card.accent .num { color: var(--verde-c); }
+
+    /* SECCIÓN */
+    .seccion {
+      background: #fff; border-radius: 12px; padding: 24px 28px 28px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07); margin-bottom: 24px;
+    }
+    .seccion h2 {
+      font-size: 1.05rem; font-weight: 700; color: var(--gris);
+      margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+    }
+    .seccion h2 .tag {
+      background: var(--verde-l); color: var(--verde-c);
+      font-size: 0.72rem; font-weight: 600; padding: 2px 10px; border-radius: 12px;
+    }
+    .seccion p.desc { font-size: 0.8rem; color: var(--gris-m); margin-bottom: 18px; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    @media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    canvas { max-height: 420px; }
+
+    /* TABLA */
+    .tabla-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+    thead th {
+      background: var(--verde); color: #fff; padding: 10px 14px;
+      text-align: left; font-weight: 600; font-size: 0.78rem; text-transform: uppercase;
+    }
+    tbody tr:nth-child(even) { background: var(--verde-l); }
+    tbody td { padding: 9px 14px; border-bottom: 1px solid var(--borde); }
+    .badge-top {
+      display: inline-block; background: var(--amarillo); color: var(--gris);
+      font-weight: 700; font-size: 0.7rem; padding: 1px 7px; border-radius: 8px;
+    }
+    .bar-inline {
+      height: 8px; background: var(--verde); border-radius: 4px; display: inline-block;
+    }
+    .num-cell { font-weight: 700; color: var(--verde-c); }
+
+    /* FOOTER */
+    footer {
+      text-align: center; font-size: 0.75rem; color: #999;
+      padding: 20px; border-top: 1px solid var(--borde); background: #fff; margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <h1>CREEMOS <span>◆</span></h1>
+    <p>Dashboard Electoral · Congreso de la República 2026</p>
+  </div>
+  <div class="badge">
+    8 de marzo, 2026<br>
+    <small>Preconteo oficial · Registraduría</small>
+  </div>
+</header>
+
+<div class="fuente-banner">
+  Fuente: Registraduría Nacional del Estado Civil — resultados.registraduria.gov.co · Datos de preconteo (fase 2, 100% actas nacionales reportadas)
+</div>
+
+<main>
+
+  <!-- CARDS -->
+  <div class="cards">
+    <div class="card">
+      <div class="num">285.354</div>
+      <div class="label">Votos Cámara — Antioquia</div>
+      <div class="sub">Lista territorial departamental</div>
+    </div>
+    <div class="card">
+      <div class="num">223.984</div>
+      <div class="label">Votos Senado — Nacional</div>
+      <div class="sub">Lista nacional circunscripción ordinaria</div>
+    </div>
+    <div class="card accent">
+      <div class="num">17</div>
+      <div class="label">Candidatos Cámara Antioquia</div>
+      <div class="sub">Lista con voto preferente</div>
+    </div>
+    <div class="card accent">
+      <div class="num">21</div>
+      <div class="label">Candidatos Senado</div>
+      <div class="sub">Lista nacional con voto preferente</div>
+    </div>
+    <div class="card">
+      <div class="num">83,8%</div>
+      <div class="label">Concentración Antioquia (Senado)</div>
+      <div class="sub">187.708 de 223.984 votos SE en Antioquia</div>
+    </div>
+    <div class="card">
+      <div class="num">106.308</div>
+      <div class="label">Votos Senado en Medellín</div>
+      <div class="sub">47,5% del total nacional Senado</div>
+    </div>
+  </div>
+
+  <!-- CANDIDATOS CÁMARA + SENADO TOP -->
+  <div class="grid-2">
+
+    <div class="seccion">
+      <h2>Candidatos Cámara <span class="tag">ANTIOQUIA</span></h2>
+      <p class="desc">Votos por candidato agregados en todos los municipios de Antioquia</p>
+      <canvas id="chartCamara"></canvas>
+    </div>
+
+    <div class="seccion">
+      <h2>Candidatos Senado <span class="tag">NACIONAL — TOP 10</span></h2>
+      <p class="desc">Votos nacionales totales por candidato (suma de todos los municipios)</p>
+      <canvas id="chartSenado"></canvas>
+    </div>
+
+  </div>
+
+  <!-- SENADO TODOS LOS CANDIDATOS -->
+  <div class="seccion">
+    <h2>Todos los candidatos al Senado — Creemos <span class="tag">21 CANDIDATOS</span></h2>
+    <p class="desc">Distribución completa de votos de la lista al Senado, en orden descendente</p>
+    <canvas id="chartSenadoFull" style="max-height:340px"></canvas>
+  </div>
+
+  <!-- VOTOS POR DEPARTAMENTO -->
+  <div class="seccion">
+    <h2>Votos Senado Creemos por departamento <span class="tag">TODO COLOMBIA</span></h2>
+    <p class="desc">Concentración geográfica del voto — Antioquia domina abrumadoramente el voto por Creemos</p>
+    <canvas id="chartDeptos" style="max-height:360px"></canvas>
+  </div>
+
+  <!-- TABLA CANDIDATOS CÁMARA -->
+  <div class="seccion">
+    <h2>Detalle candidatos — Cámara Antioquia <span class="tag">LISTA COMPLETA</span></h2>
+    <p class="desc">Resultados desagregados por candidato con su participación dentro de la lista del partido</p>
+    <div class="tabla-wrap">
+      <table id="tablaCamara"></table>
+    </div>
+  </div>
+
+  <!-- TABLA TOP MUNICIPIOS -->
+  <div class="seccion">
+    <h2>Top 20 municipios — Votos Senado Creemos <span class="tag">SENADO</span></h2>
+    <p class="desc">Los 20 municipios con mayor votación por Creemos en la circunscripción nacional del Senado</p>
+    <div class="tabla-wrap">
+      <table id="tablaMunis"></table>
+    </div>
+  </div>
+
+  <!-- TABLA CANDIDATOS SENADO -->
+  <div class="seccion">
+    <h2>Detalle candidatos — Senado Nacional <span class="tag">LISTA COMPLETA</span></h2>
+    <p class="desc">Votos nacionales por candidato — suma de todos los municipios de Colombia</p>
+    <div class="tabla-wrap">
+      <table id="tablaSenado"></table>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Dashboard generado con datos del preconteo oficial de la Registraduría Nacional del Estado Civil · Elecciones Congreso de la República 2026 (8 de marzo de 2026)
+  · Fuente: resultados.registraduria.gov.co
+</footer>
+
+<script>
+// ────────────────────────────────────────────────────────────────
+// DATOS EMBEBIDOS (fuente: Registraduría — preconteo oficial)
+// ────────────────────────────────────────────────────────────────
+const CAMARA = [
+  {candidato:"LUIS GUILLERMO PATIÑO ARISTIZABAL",  cedula:"71743015",   votos:67481},
+  {candidato:"SIMON MOLINA GOMEZ",                 cedula:"15272564",   votos:63812},
+  {candidato:"JOSE MIGUEL ZULUAGA MORA",           cedula:"1152212302", votos:30727},
+  {candidato:"GERMAN DARIO HOYOS GIRALDO",         cedula:"71679356",   votos:30662},
+  {candidato:"VIVIANA MUÑOZ GIRALDO",              cedula:"43275274",   votos:8099},
+  {candidato:"CARLOS IGNACIO CUERVO VALENCIA",     cedula:"70084417",   votos:5913},
+  {candidato:"EDWIN ANGOLA MENA",                  cedula:"11802578",   votos:5751},
+  {candidato:"RODRIGO PATIÑO CORREA",              cedula:"71792778",   votos:5749},
+  {candidato:"IVAN ALONSO MONTOYA URREGO",         cedula:"98545937",   votos:4475},
+  {candidato:"HECTOR JAIME RENDON OSORIO",         cedula:"70811360",   votos:4462},
+  {candidato:"CAMILA OSPINA ZAPATA",               cedula:"1128283773", votos:3840},
+  {candidato:"CLAUDIA PATRICIA HOYOS ARISMENDI",   cedula:"42890319",   votos:2817},
+  {candidato:"INGRI EMIR HOLGUIN RENDON",          cedula:"43497822",   votos:1780},
+  {candidato:"JUAN DAVID GUZMAN CANO",             cedula:"1036673622", votos:1737},
+  {candidato:"CAROLINA VARGAS GOMEZ",              cedula:"43620336",   votos:1259},
+  {candidato:"FABIO ALONSO NARANJO VILLADA",       cedula:"8309081",    votos:884},
+  {candidato:"CAMILA JARAMILLO CANO",              cedula:"",           votos:344}
+];
+
+const SENADO = [
+  {candidato:"JULIANA GUTIERREZ ZULUAGA",        cedula:"43263428",   votos:96438},
+  {candidato:"ANDRES FELIPE BEDOYA RENDON",      cedula:"71368344",   votos:33606},
+  {candidato:"WILDER ZAPATA TORRES",             cedula:"1128440848", votos:10446},
+  {candidato:"NATALIA EUGENIA LOPEZ FUENTES",    cedula:"1067836645", votos:6413},
+  {candidato:"ELIECER CAMACHO JIMENEZ",          cedula:"11435109",   votos:6154},
+  {candidato:"SARA JARAMILLO GALLEGO",           cedula:"43222050",   votos:4003},
+  {candidato:"DIEGO ANDRES HERNANDEZ MOSQUERA",  cedula:"86051011",   votos:3200},
+  {candidato:"JUAN DIEGO MUÑOZ COSSIO",          cedula:"98712136",   votos:3063},
+  {candidato:"ANGEL AUGUSTO SANCHEZ HERNANDEZ",  cedula:"13504174",   votos:2543},
+  {candidato:"NELSON BARRERA ROA",               cedula:"74858571",   votos:2331},
+  {candidato:"LUIS ERNESTO RIVERA ESCOBAR",      cedula:"18261582",   votos:2012},
+  {candidato:"MARTHA ALICIA RESTREPO CORREA",    cedula:"32144208",   votos:1995},
+  {candidato:"JORGE HUGO ARANGUREN OCAMPO",      cedula:"94317941",   votos:1380},
+  {candidato:"JUAN ALEJANDRO ANGEL ARANGO",      cedula:"10136673",   votos:1349},
+  {candidato:"LAURA MARCELA GAMBOA PATERNINA",   cedula:"1020744375", votos:1330},
+  {candidato:"JHON ALEX MENDEZ VARGAS",          cedula:"1097403047", votos:1296},
+  {candidato:"LIDA GREGORIA DRAGO CALY",         cedula:"42134067",   votos:1174},
+  {candidato:"CLAUDIA EUSEBIA CESPEDES CAMPOS",  cedula:"49668519",   votos:1140},
+  {candidato:"MARIA CATALINA RAMIREZ VELEZ",     cedula:"43864932",   votos:1105},
+  {candidato:"SARA MARIA ARBELAEZ RAMIREZ",      cedula:"1144079577", votos:1046},
+  {candidato:"GUSTAVO ALONSO PINEDO POLO",       cedula:"73104916",   votos:887}
+];
+
+const DEPTOS = [
+  ["ANTIOQUIA",187708],["BOGOTÁ D.C.",6282],["SANTANDER",3479],["VALLE",3003],
+  ["CUNDINAMARCA",2901],["CÓRDOBA",2840],["ATLÁNTICO",1982],["QUINDÍO",1946],
+  ["CONSULADOS",1824],["BOLÍVAR",1757],["HUILA",1267],["RISARALDA",1207],
+  ["MAGDALENA",1193],["CASANARE",1081],["CALDAS",1038],["SUCRE",997],
+  ["TOLIMA",926],["NARIÑO",903],["N. DE SANTANDER",860],["CESAR",790],
+  ["CHOCÓ",705],["BOYACÁ",673],["META",641],["CAUCA",509],["ARAUCA",384],
+  ["VICHADA",367],["LA GUAJIRA",294],["CAQUETÁ",155],["PUTUMAYO",97],
+  ["SAN ANDRÉS",73],["GUAVIARE",28],["VAUPÉS",20],["GUAINÍA",14],["AMAZONAS",13]
+];
+
+const TOP_MUNIS = [
+  {municipio:"MEDELLÍN",         departamento:"ANTIOQUIA",    votos:106308},
+  {municipio:"BELLO",            departamento:"ANTIOQUIA",    votos:10400},
+  {municipio:"ENVIGADO",         departamento:"ANTIOQUIA",    votos:9244},
+  {municipio:"ITAGÜÍ",           departamento:"ANTIOQUIA",    votos:7451},
+  {municipio:"RIONEGRO",         departamento:"ANTIOQUIA",    votos:7235},
+  {municipio:"BOGOTÁ D.C.",      departamento:"BOGOTÁ D.C.",  votos:6282},
+  {municipio:"SABANETA",         departamento:"ANTIOQUIA",    votos:6281},
+  {municipio:"GIRARDOTA",        departamento:"ANTIOQUIA",    votos:2508},
+  {municipio:"COPACABANA",       departamento:"ANTIOQUIA",    votos:2432},
+  {municipio:"LA CEJA",          departamento:"ANTIOQUIA",    votos:2004},
+  {municipio:"MARINILLA",        departamento:"ANTIOQUIA",    votos:1965},
+  {municipio:"CALDAS",           departamento:"ANTIOQUIA",    votos:1840},
+  {municipio:"LA ESTRELLA",      departamento:"ANTIOQUIA",    votos:1830},
+  {municipio:"BUCARAMANGA",      departamento:"SANTANDER",    votos:1770},
+  {municipio:"MONTERÍA",         departamento:"CÓRDOBA",      votos:1755},
+  {municipio:"CALI",             departamento:"VALLE",        votos:1580},
+  {municipio:"BARBOSA",          departamento:"ANTIOQUIA",    votos:1220},
+  {municipio:"GUARNE",           departamento:"ANTIOQUIA",    votos:1180},
+  {municipio:"APARTADÓ",         departamento:"ANTIOQUIA",    votos:1050},
+  {municipio:"TURBO",            departamento:"ANTIOQUIA",    votos:890}
+];
+
+// ────────────────────────────────────────────────────────────────
+// COLORES
+// ────────────────────────────────────────────────────────────────
+const VERDE   = '#26841E';
+const VERDE_C = '#1a5c14';
+const VERDE_L = '#6db866';
+const AMARILLO= '#BFDD09';
+const GRISES  = '#94a894';
+
+function toNombre(s) {
+  return s.split(' ').map(w => w.charAt(0)+w.slice(1).toLowerCase()).join(' ');
+}
+function fmt(n) { return n.toLocaleString('es-CO'); }
+
+// ────────────────────────────────────────────────────────────────
+// GRÁFICA CÁMARA
+// ────────────────────────────────────────────────────────────────
+(function() {
+  const labels = CAMARA.map(c => toNombre(c.candidato));
+  const valores = CAMARA.map(c => c.votos);
+  const maxV = Math.max(...valores);
+  const colores = valores.map(v => v >= maxV * 0.9 ? AMARILLO : v >= maxV * 0.4 ? VERDE : VERDE_L);
+
+  new Chart(document.getElementById('chartCamara'), {
+    type: 'bar',
+    data: { labels, datasets: [{ data: valores, backgroundColor: colores, borderRadius: 5 }] },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + fmt(ctx.raw) + ' votos' } } },
+      scales: {
+        x: { grid: { color: '#e8f0e8' }, ticks: { callback: v => fmt(v) } },
+        y: { ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+})();
+
+// ────────────────────────────────────────────────────────────────
+// GRÁFICA SENADO TOP 10
+// ────────────────────────────────────────────────────────────────
+(function() {
+  const top10 = SENADO.slice(0, 10);
+  const labels = top10.map(c => toNombre(c.candidato));
+  const valores = top10.map(c => c.votos);
+  const maxV = Math.max(...valores);
+  const colores = valores.map(v => v >= maxV * 0.9 ? AMARILLO : v >= maxV * 0.3 ? VERDE : VERDE_L);
+
+  new Chart(document.getElementById('chartSenado'), {
+    type: 'bar',
+    data: { labels, datasets: [{ data: valores, backgroundColor: colores, borderRadius: 5 }] },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + fmt(ctx.raw) + ' votos' } } },
+      scales: {
+        x: { grid: { color: '#e8f0e8' }, ticks: { callback: v => fmt(v) } },
+        y: { ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+})();
+
+// ────────────────────────────────────────────────────────────────
+// GRÁFICA SENADO FULL
+// ────────────────────────────────────────────────────────────────
+(function() {
+  const labels = SENADO.map(c => toNombre(c.candidato));
+  const valores = SENADO.map(c => c.votos);
+  const maxV = Math.max(...valores);
+  const colores = valores.map(v => v >= maxV * 0.9 ? AMARILLO : VERDE);
+
+  new Chart(document.getElementById('chartSenadoFull'), {
+    type: 'bar',
+    data: { labels, datasets: [{ data: valores, backgroundColor: colores, borderRadius: 4 }] },
+    options: {
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + fmt(ctx.raw) + ' votos' } } },
+      scales: {
+        x: { ticks: { maxRotation: 45, font: { size: 10 } } },
+        y: { grid: { color: '#e8f0e8' }, ticks: { callback: v => fmt(v) } }
+      }
+    }
+  });
+})();
+
+// ────────────────────────────────────────────────────────────────
+// GRÁFICA DEPARTAMENTOS (sin Antioquia para escala)
+// ────────────────────────────────────────────────────────────────
+(function() {
+  const data = DEPTOS.slice(0, 20);
+  const labels = data.map(d => d[0]);
+  const valores = data.map(d => d[1]);
+  const colores = data.map((d,i) => i===0 ? AMARILLO : VERDE);
+
+  new Chart(document.getElementById('chartDeptos'), {
+    type: 'bar',
+    data: { labels, datasets: [{ data: valores, backgroundColor: colores, borderRadius: 5 }] },
+    options: {
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + fmt(ctx.raw) + ' votos' } } },
+      scales: {
+        x: { ticks: { maxRotation: 45, font: { size: 10 } } },
+        y: { grid: { color: '#e8f0e8' }, ticks: { callback: v => fmt(v) } }
+      }
+    }
+  });
+})();
+
+// ────────────────────────────────────────────────────────────────
+// TABLA CÁMARA
+// ────────────────────────────────────────────────────────────────
+(function() {
+  const table = document.getElementById('tablaCamara');
+  const totalVotos = CAMARA.reduce((s,c)=>s+c.votos, 0);
+  const maxV = Math.max(...CAMARA.map(c=>c.votos));
+
+  table.innerHTML = `<thead><tr>
+    <th>#</th><th>Candidato</th><th>Cédula</th>
+    <th>Votos candidato</th><th>% de lista</th><th>Distribución</th>
+  </tr></thead>`;
+  const tbody = document.createElement('tbody');
+  CAMARA.forEach((c,i) => {
+    const pct = ((c.votos / totalVotos)*100).toFixed(1);
+    const barW = Math.round((c.votos/maxV)*100);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${i===0?'<span class="badge-top">1°</span>':i+1}</td>
+      <td><strong>${toNombre(c.candidato)}</strong></td>
+      <td style="color:#888;font-size:.8rem">${c.cedula}</td>
+      <td class="num-cell">${fmt(c.votos)}</td>
+      <td>${pct}%</td>
+      <td><span class="bar-inline" style="width:${barW}px"></span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+  const tfooter = document.createElement('tfoot');
+  tfooter.innerHTML = `<tr style="background:var(--verde-l);font-weight:700">
+    <td colspan="3">TOTAL LISTA CÁMARA ANTIOQUIA</td>
+    <td>${fmt(totalVotos)}</td><td>100%</td><td></td>
+  </tr>`;
+  table.appendChild(tbody);
+  table.appendChild(tfooter);
+})();
+
+// ────────────────────────────────────────────────────────────────
+// TABLA MUNICIPIOS
+// ────────────────────────────────────────────────────────────────
+(function() {
+  const table = document.getElementById('tablaMunis');
+  const maxV = TOP_MUNIS[0].votos;
+  table.innerHTML = `<thead><tr>
+    <th>#</th><th>Municipio</th><th>Departamento</th>
+    <th>Votos Senado</th><th>Distribución</th>
+  </tr></thead>`;
+  const tbody = document.createElement('tbody');
+  TOP_MUNIS.forEach((m,i) => {
+    const barW = Math.round((m.votos/maxV)*100);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${i===0?'<span class="badge-top">1°</span>':i+1}</td>
+      <td><strong>${toNombre(m.municipio)}</strong></td>
+      <td>${toNombre(m.departamento)}</td>
+      <td class="num-cell">${fmt(m.votos)}</td>
+      <td><span class="bar-inline" style="width:${barW}px"></span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+})();
+
+// ────────────────────────────────────────────────────────────────
+// TABLA SENADO
+// ────────────────────────────────────────────────────────────────
+(function() {
+  const table = document.getElementById('tablaSenado');
+  const totalVotos = SENADO.reduce((s,c)=>s+c.votos, 0);
+  const maxV = SENADO[0].votos;
+
+  table.innerHTML = `<thead><tr>
+    <th>#</th><th>Candidato</th><th>Cédula</th>
+    <th>Votos nacionales</th><th>% de lista</th><th>Distribución</th>
+  </tr></thead>`;
+  const tbody = document.createElement('tbody');
+  SENADO.forEach((c,i) => {
+    const pct = ((c.votos/totalVotos)*100).toFixed(1);
+    const barW = Math.round((c.votos/maxV)*100);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${i===0?'<span class="badge-top">1°</span>':i+1}</td>
+      <td><strong>${toNombre(c.candidato)}</strong></td>
+      <td style="color:#888;font-size:.8rem">${c.cedula}</td>
+      <td class="num-cell">${fmt(c.votos)}</td>
+      <td>${pct}%</td>
+      <td><span class="bar-inline" style="width:${barW}px"></span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+  const tfooter = document.createElement('tfoot');
+  tfooter.innerHTML = `<tr style="background:var(--verde-l);font-weight:700">
+    <td colspan="3">TOTAL LISTA SENADO NACIONAL</td>
+    <td>${fmt(totalVotos)}</td><td>100%</td><td></td>
+  </tr>`;
+  table.appendChild(tbody);
+  table.appendChild(tfooter);
+})();
+</script>
+</body>
+</html>
