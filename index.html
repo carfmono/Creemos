@@ -41,26 +41,23 @@
     .tab-btn:hover{color:#fff;background:#ffffff18;}
     .tab-btn.active{color:var(--am);border-bottom-color:var(--am);background:#ffffff10;}
 
-    /* ── FILTER BAR ── */
-    .filtro-bar{background:#fff;border-bottom:2px solid var(--bor);padding:12px 36px;display:flex;align-items:center;gap:12px;}
+    .filtro-bar{background:#fff;border-bottom:2px solid var(--bor);padding:12px 36px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
     .filtro-lbl{font-size:.82rem;color:var(--med);font-weight:700;margin-right:4px;}
     .fbtn{padding:9px 26px;border:2px solid var(--mg);border-radius:8px;cursor:pointer;font-size:.9rem;font-weight:700;letter-spacing:.5px;transition:all .2s;font-family:inherit;background:#fff;color:var(--mg);}
     .fbtn.active{background:var(--mg);color:#fff;box-shadow:0 3px 12px rgba(140,0,95,.35);}
     .fbtn:not(.active):hover{background:var(--mg-l);}
+    .fbtn-sm{padding:6px 18px;font-size:.82rem;border-radius:6px;}
 
-    /* ── LOADING (Tab 2) ── */
     #loading{position:fixed;inset:0;background:#8C005Fee;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;color:#fff;font-size:1rem;}
     .spinner{width:46px;height:46px;border:5px solid #fff3;border-top:5px solid var(--am);border-radius:50%;animation:spin .9s linear infinite;margin-bottom:14px;}
     @keyframes spin{to{transform:rotate(360deg);}}
     #load-msg{font-size:.85rem;opacity:.8;margin-top:6px;}
 
-    /* ── SPINNER SMALL (Cámara munis) ── */
     .spin-sm{width:24px;height:24px;border:3px solid var(--bor);border-top:3px solid var(--mg);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto;}
 
     .tab-content{display:none;}
     .tab-content.active{display:block;}
 
-    /* ── TAB 1 ── */
     #t1 main{max-width:1280px;margin:0 auto;padding:24px 20px 60px;}
 
     .sumcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:22px;}
@@ -90,20 +87,29 @@
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
     @media(max-width:800px){.grid2{grid-template-columns:1fr;}}
 
-    /* ── MAP ── */
     #mapa-col{width:100%;min-height:300px;}
-    .dep-path{stroke:#fff;stroke-width:.6;transition:fill .4s;}
-    .dep-path:hover{stroke:#8C005F;stroke-width:1.8;cursor:pointer;}
-    #map-tt{position:fixed;background:#fff;border:1px solid var(--bor);border-radius:7px;padding:9px 13px;font-size:.79rem;pointer-events:none;box-shadow:0 3px 12px rgba(0,0,0,.18);z-index:600;display:none;line-height:1.55;}
-    #map-tt strong{color:var(--mg);display:block;font-size:.84rem;}
+    .dep-path{stroke:#fff;stroke-width:.6;transition:fill .3s;}
+    .dep-path:hover{stroke:var(--mg);stroke-width:2;cursor:pointer;}
+    #map-tt{position:fixed;background:#fff;border:1px solid var(--bor);border-radius:8px;padding:10px 14px;font-size:.79rem;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.18);z-index:600;display:none;line-height:1.65;max-width:260px;}
+    #map-tt strong{color:var(--mg);display:block;font-size:.86rem;margin-bottom:3px;}
+    #map-tt .tt-row{display:flex;align-items:center;gap:7px;margin-top:2px;}
+    #map-tt .tt-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
 
-    /* ── CANDIDATE FILTER PILLS (Cámara munis) ── */
     .cand-filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
     .cfbtn{padding:5px 13px;border:1.5px solid var(--mg);border-radius:20px;cursor:pointer;font-size:.73rem;font-weight:700;font-family:inherit;background:#fff;color:var(--mg);transition:all .15s;}
     .cfbtn.active{background:var(--mg);color:#fff;}
     .cfbtn:not(.active):hover{background:var(--mg-l);}
 
-    /* ── TABLES ── */
+    /* Competition map */
+    .comp-grid{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start;}
+    @media(max-width:960px){.comp-grid{grid-template-columns:1fr;}}
+    .party-swatch{width:13px;height:13px;border-radius:3px;flex-shrink:0;border:1px solid rgba(0,0,0,.1);}
+    .comp-table-rank-1{color:#b8860b;font-weight:900;}
+    .comp-table-rank-2,.comp-table-rank-3{color:var(--mg);font-weight:700;}
+    .comp-table-other{color:var(--med);}
+    .comp-nota{font-size:.7rem;color:var(--med);font-style:italic;margin-top:10px;line-height:1.5;}
+    .bar-comp{height:6px;border-radius:3px;display:inline-block;}
+
     .tw{overflow-x:auto;}
     table{width:100%;border-collapse:collapse;font-size:.82rem;}
     thead th{background:var(--mg);color:#fff;padding:9px 12px;text-align:left;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
@@ -113,8 +119,10 @@
     .nc{font-weight:700;color:var(--mg-c);}
     .bt{display:inline-block;background:var(--am);color:var(--osc);font-weight:800;font-size:.68rem;padding:2px 7px;border-radius:4px;}
     .bi{height:7px;background:var(--mg);border-radius:3px;display:inline-block;}
+    .lista-row td{background:#f0fff0!important;color:#1a6a00;font-style:italic;font-size:.79rem;}
+    .lista-row td strong{color:#1a6a00;}
+    .win-row td{background:#fff8e0!important;}
 
-    /* ── TAB 2 DRILL-DOWN ── */
     #t2 main{max-width:1380px;margin:0 auto;padding:24px 20px 60px;}
     .layout{display:grid;grid-template-columns:290px 1fr;gap:20px;align-items:start;}
     @media(max-width:860px){.layout{grid-template-columns:1fr;}}
@@ -153,20 +161,49 @@
     .mr-bar{height:6px;background:var(--mg);border-radius:3px;}
 
     footer{text-align:center;font-size:.73rem;color:#999;padding:18px;background:#fff;border-top:1px solid var(--bor);margin-top:20px;}
+
+    /* ─── COMPARATIVE TAB ─── */
+    #t3 main{max-width:1280px;margin:0 auto;padding:24px 20px 60px;}
+    .cmp-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px;}
+    @media(max-width:700px){.cmp-cards{grid-template-columns:1fr;}}
+    .cmp-card{background:#fff;border-radius:10px;padding:15px 18px;box-shadow:0 2px 8px rgba(0,0,0,.07);border-top:4px solid #ccc;}
+    .cmp-card.cr{border-top-color:var(--mg);}  .cmp-card.cd{border-top-color:#1A3C8F;}  .cmp-card.ph{border-top-color:#B71C1C;}
+    .cmp-card .cv{font-size:1.35rem;font-weight:900;line-height:1;}
+    .cmp-card.cr .cv{color:var(--mg);}  .cmp-card.cd .cv{color:#1A3C8F;}  .cmp-card.ph .cv{color:#B71C1C;}
+    .cmp-card .cl{font-size:.72rem;color:var(--med);margin-top:4px;font-weight:600;}
+    .cmp-card .cs{font-size:.66rem;color:var(--med);margin-top:2px;opacity:.85;}
+    .hth3-row{margin-bottom:13px;}
+    .hth3-label{display:flex;justify-content:space-between;font-size:.76rem;font-weight:700;margin-bottom:4px;}
+    .hth3-bar-wrap{height:14px;background:#F0F2F7;border-radius:7px;display:flex;gap:2px;overflow:hidden;}
+    .hth3-bar{border-radius:6px;height:100%;transition:width .8s;}
+    .cmp-insight{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.07);border-left:4px solid var(--mg);}
+    .cmp-insight.cd{border-left-color:#1A3C8F;} .cmp-insight.ph{border-left-color:#B71C1C;}
+    .cmp-insight.nm{border-left-color:#F9A825;}
+    .cmp-insight .ci-t{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--med);margin-bottom:5px;}
+    .cmp-insight .ci-v{font-size:1.05rem;font-weight:900;color:var(--osc);}
+    .cmp-insight.cd .ci-v{color:#1A3C8F;} .cmp-insight.ph .ci-v{color:#B71C1C;}
+    .cmp-insight .ci-s{font-size:.72rem;color:var(--med);margin-top:3px;line-height:1.5;}
+    .ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
+    @media(max-width:800px){.ins-grid{grid-template-columns:1fr 1fr;}}
+    .cmp-cands{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;}
+    @media(max-width:860px){.cmp-cands{grid-template-columns:1fr;}}
+    .cmp-cand-panel{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);}
+    .cmp-cand-hdr{padding:11px 16px;color:#fff;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+    .cmp-cand-hdr small{display:block;font-weight:500;font-size:.68rem;opacity:.85;margin-top:1px;}
+    .cmp-cand-item{display:flex;align-items:center;gap:9px;padding:7px 14px;border-bottom:1px solid var(--bor);font-size:.77rem;}
+    .cmp-cand-item:last-child{border-bottom:none;}
+    .cmp-cand-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:900;color:#fff;flex-shrink:0;}
+    .note-box{background:#fffde7;border:1px solid #F9A825;border-radius:8px;padding:12px 16px;font-size:.76rem;color:#5d4000;margin-bottom:16px;line-height:1.6;}
   </style>
 </head>
 <body>
-
 <div id="map-tt"></div>
-
 <div id="loading" style="display:none;">
   <div class="spinner"></div>
   <div>Cargando datos desde la Registraduría...</div>
   <div id="load-msg">Procesando municipios</div>
 </div>
-
 <div class="tricolor"><div class="r"></div><div class="y"></div><div class="b"></div></div>
-
 <header>
   <div class="logo">
     <h1>CR<svg width="26" height="18" viewBox="0 0 26 18" style="vertical-align:middle;margin:0 2px" xmlns="http://www.w3.org/2000/svg">
@@ -180,15 +217,14 @@
   </div>
   <div class="badge-h">8 de marzo, 2026<small>Preconteo oficial · Registraduría</small></div>
 </header>
-
-<div class="fuente">Fuente: Registraduría Nacional del Estado Civil · resultados.registraduria.gov.co · Preconteo (fase 2, 100% actas reportadas)</div>
-
+<div class="fuente">Fuente: Registraduría Nacional del Estado Civil · resultados.registraduria.gov.co · Preconteo (100% actas reportadas)</div>
 <div class="tabs">
   <div class="tab-btn active" onclick="switchTab(0)">📊 Dashboard General</div>
   <div class="tab-btn"        onclick="switchTab(1)">🔍 Senado — Drill-down por candidato</div>
+  <div class="tab-btn"        onclick="switchTab(2)">⚖️ Comparativo · CD &amp; PH</div>
 </div>
 
-<!-- ══════════ TAB 1: DASHBOARD ══════════ -->
+<!-- TAB 1 -->
 <div id="t1" class="tab-content active">
   <div class="filtro-bar">
     <span class="filtro-lbl">Corporación:</span>
@@ -205,7 +241,7 @@
 
     <div class="grid-map">
       <div class="sec">
-        <h2>Mapa de calor — Colombia <span class="tag" id="map-tag">SENADO NACIONAL</span></h2>
+        <h2>Mapa de votos Creemos <span class="tag" id="map-tag">SENADO NACIONAL</span></h2>
         <p class="desc" id="map-desc">Intensidad de voto por departamento · Senado de la República</p>
         <div id="mapa-col" style="display:flex;align-items:center;justify-content:center;min-height:300px;">
           <div style="color:var(--med);font-size:.82rem;text-align:center;"><div style="font-size:1.5rem;margin-bottom:8px">🗺️</div>Cargando mapa...</div>
@@ -217,12 +253,22 @@
       </div>
     </div>
 
+    <!-- MAPA COMPETITIVO -->
+    <div class="sec">
+      <h2>⚔️ Mapa Competitivo — Partido ganador vs. CREEMOS <span class="tag" id="comp-tag">SENADO NACIONAL</span></h2>
+      <p class="desc">¿Qué partido obtuvo más votos en cada departamento? ¿En qué posición quedó CREEMOS?</p>
+      <div id="comp-map-wrap" style="text-align:center;padding:22px 0">
+        <button class="fbtn fbtn-sm" onclick="loadCompetencia()">📊 Cargar datos competitivos</button>
+        <p style="font-size:.73rem;color:var(--med);margin-top:8px;">Consulta la Registraduría en tiempo real — unos segundos</p>
+      </div>
+    </div>
+
     <div id="seccion-graficas"></div>
     <div id="seccion-tablas"></div>
   </main>
 </div>
 
-<!-- ══════════ TAB 2: DRILL-DOWN ══════════ -->
+<!-- TAB 2 -->
 <div id="t2" class="tab-content">
 <main>
   <div class="layout">
@@ -234,41 +280,76 @@
     <div class="d-panel" id="detalle">
       <div class="d-header" style="border-left-color:var(--am);text-align:center;color:var(--med);">
         <div style="font-size:2rem">◀</div>
-        <p style="margin-top:8px;font-size:.9rem">Selecciona un candidato de la lista para ver su distribución geográfica</p>
+        <p style="margin-top:8px;font-size:.9rem">Selecciona un candidato para ver su distribución geográfica</p>
       </div>
     </div>
   </div>
 </main>
 </div>
 
-<footer>Dashboard · CREEMOS — Congreso de la República 2026 · Datos del preconteo oficial de la Registraduría Nacional · resultados.registraduria.gov.co</footer>
+<!-- TAB 3: COMPARATIVO -->
+<div id="t3" class="tab-content">
+<main>
+  <div class="note-box">⚠️ <strong>Contexto electoral:</strong> CREEMOS es una fuerza regional con base en Antioquia. La comparación nacional con CD y PH muestra brechas estructurales; la comparación en Antioquia revela una fuerza competitiva real.</div>
+
+  <div class="sec">
+    <h2>⚖️ Comparación directa <span class="tag">SENADO NACIONAL</span></h2>
+    <p class="desc">Votos, porcentaje y escaños — Senado de la República · Elecciones 8 de marzo 2026</p>
+    <div id="hth3-nacional"></div>
+  </div>
+
+  <div class="sec">
+    <h2>🏔️ Comparación en Antioquia <span class="tag">SENADO + CÁMARA</span></h2>
+    <p class="desc">En el territorio de CREEMOS, la brecha con CD se reduce y PH queda tercero. Cámara es donde CREEMOS compite de igual a igual.</p>
+    <div id="hth3-antioquia"></div>
+  </div>
+
+  <div class="sec">
+    <h2>📊 Votos totales Senado <span class="tag">GRÁFICA COMPARATIVA</span></h2>
+    <p class="desc">Los tres partidos en el contexto del Senado nacional 2026</p>
+    <canvas id="cmp-chart-votos"></canvas>
+  </div>
+
+  <div class="ins-grid" id="cmp-insights"></div>
+
+  <div class="sec">
+    <h2>🌎 Dimensiones del voto <span class="tag">CREEMOS vs CD vs PH</span></h2>
+    <p class="desc">Análisis comparativo multidimensional: geográfico, ideológico y de resultados</p>
+    <div id="cmp-radar-wrap" style="max-width:520px;margin:0 auto;">
+      <canvas id="cmp-chart-radar"></canvas>
+    </div>
+  </div>
+
+  <div class="cmp-cands" id="cmp-cands-wrap"></div>
+
+</main>
+</div>
+<footer>CREEMOS — Congreso de la República 2026 · Datos del preconteo oficial de la Registraduría Nacional</footer>
 
 <script>
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // UTILS
-// ═══════════════════════════════════════════════════════════
-const C = {mg:'#8C005F',mgc:'#650045',mgl:'#c45c98',am:'#FFD700',az:'#0057A8',ro:'#CC0000'};
+// ═══════════════════════════════════════════
+const C={mg:'#8C005F',mgc:'#650045',mgl:'#c45c98',am:'#FFD700',az:'#0057A8',ro:'#CC0000'};
 function fmt(n){return(n||0).toLocaleString('es-CO');}
 function cap(s){return s.split(' ').map(w=>w?w[0]+w.slice(1).toLowerCase():'').join(' ');}
-function shortCandName(nm){
-  const p=nm.split(' ');
-  if(p.length<=2) return cap(nm);
-  return cap(p[0])+' '+cap(p[p.length-1]);
-}
+function shortCandName(nm){const p=nm.split(' ');return p.length<=2?cap(nm):cap(p[0])+' '+cap(p[p.length-1]);}
+function normStr(s){return(s||'').toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Z0-9\s]/g,'').replace(/\s+/g,' ').trim();}
 
-// ═══════════════════════════════════════════════════════════
-// TAB SWITCHING
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════
 let drillLoaded=false;
 function switchTab(idx){
   document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
   document.querySelectorAll('.tab-content').forEach((c,i)=>c.classList.toggle('active',i===idx));
   if(idx===1&&!drillLoaded){drillLoaded=true;loadDrill();}
+  if(idx===2&&!cmpLoaded){cmpLoaded=true;renderComparativo();}
 }
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // EMBEDDED DATA
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 const CAMARA=[
   {candidato:"LUIS GUILLERMO PATIÑO ARISTIZABAL",  cedula:"71743015",   votos:67481},
   {candidato:"SIMON MOLINA GOMEZ",                 cedula:"15272564",   votos:63812},
@@ -319,36 +400,38 @@ const DEPTOS=[
   ["TOLIMA",926],["NARIÑO",903],["N. DE SANTANDER",860],["CESAR",790]
 ];
 const TOP_MUNIS=[
-  {municipio:"MEDELLÍN",    departamento:"ANTIOQUIA",   votos:106308},
-  {municipio:"BELLO",       departamento:"ANTIOQUIA",   votos:10400},
-  {municipio:"ENVIGADO",    departamento:"ANTIOQUIA",   votos:9244},
-  {municipio:"ITAGÜÍ",      departamento:"ANTIOQUIA",   votos:7451},
-  {municipio:"RIONEGRO",    departamento:"ANTIOQUIA",   votos:7235},
-  {municipio:"BOGOTÁ D.C.", departamento:"BOGOTÁ D.C.", votos:6282},
-  {municipio:"SABANETA",    departamento:"ANTIOQUIA",   votos:6281},
-  {municipio:"GIRARDOTA",   departamento:"ANTIOQUIA",   votos:2508},
-  {municipio:"COPACABANA",  departamento:"ANTIOQUIA",   votos:2432},
-  {municipio:"LA CEJA",     departamento:"ANTIOQUIA",   votos:2004},
-  {municipio:"MARINILLA",   departamento:"ANTIOQUIA",   votos:1965},
-  {municipio:"CALDAS",      departamento:"ANTIOQUIA",   votos:1840},
-  {municipio:"LA ESTRELLA", departamento:"ANTIOQUIA",   votos:1830},
-  {municipio:"BUCARAMANGA", departamento:"SANTANDER",   votos:1770},
-  {municipio:"MONTERÍA",    departamento:"CÓRDOBA",     votos:1755},
-  {municipio:"CALI",        departamento:"VALLE",       votos:1580},
-  {municipio:"BARBOSA",     departamento:"ANTIOQUIA",   votos:1220},
-  {municipio:"GUARNE",      departamento:"ANTIOQUIA",   votos:1180},
-  {municipio:"APARTADÓ",    departamento:"ANTIOQUIA",   votos:1050},
-  {municipio:"TURBO",       departamento:"ANTIOQUIA",   votos:890}
+  {municipio:"MEDELLÍN",departamento:"ANTIOQUIA",votos:106308},
+  {municipio:"BELLO",departamento:"ANTIOQUIA",votos:10400},
+  {municipio:"ENVIGADO",departamento:"ANTIOQUIA",votos:9244},
+  {municipio:"ITAGÜÍ",departamento:"ANTIOQUIA",votos:7451},
+  {municipio:"RIONEGRO",departamento:"ANTIOQUIA",votos:7235},
+  {municipio:"BOGOTÁ D.C.",departamento:"BOGOTÁ D.C.",votos:6282},
+  {municipio:"SABANETA",departamento:"ANTIOQUIA",votos:6281},
+  {municipio:"GIRARDOTA",departamento:"ANTIOQUIA",votos:2508},
+  {municipio:"COPACABANA",departamento:"ANTIOQUIA",votos:2432},
+  {municipio:"LA CEJA",departamento:"ANTIOQUIA",votos:2004},
+  {municipio:"MARINILLA",departamento:"ANTIOQUIA",votos:1965},
+  {municipio:"CALDAS",departamento:"ANTIOQUIA",votos:1840},
+  {municipio:"LA ESTRELLA",departamento:"ANTIOQUIA",votos:1830},
+  {municipio:"BUCARAMANGA",departamento:"SANTANDER",votos:1770},
+  {municipio:"MONTERÍA",departamento:"CÓRDOBA",votos:1755},
+  {municipio:"CALI",departamento:"VALLE",votos:1580},
+  {municipio:"BARBOSA",departamento:"ANTIOQUIA",votos:1220},
+  {municipio:"GUARNE",departamento:"ANTIOQUIA",votos:1180},
+  {municipio:"APARTADÓ",departamento:"ANTIOQUIA",votos:1050},
+  {municipio:"TURBO",departamento:"ANTIOQUIA",votos:890}
 ];
+const TOTAL_SE_GLOBAL=223984;
+const TOTAL_CA_GLOBAL=269927;
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // CHART & TABLE HELPERS
-// ═══════════════════════════════════════════════════════════
-function mkChart(id, type, labels, valores, opts={}){
+// ═══════════════════════════════════════════
+function mkChart(id,type,labels,valores,opts={}){
   const maxV=Math.max(...valores,1);
   const colores=opts.colores||valores.map((v,i)=>i===0||v>=maxV*.85?C.am:v>=maxV*.35?C.mg:C.mgl);
   return new Chart(document.getElementById(id),{
-    type, data:{labels,datasets:[{data:valores,backgroundColor:colores,borderRadius:5}]},
+    type,data:{labels,datasets:[{data:valores,backgroundColor:colores,borderRadius:5}]},
     options:{
       indexAxis:opts.horiz?'y':'x',
       plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmt(ctx.raw)+' votos'}}},
@@ -359,9 +442,8 @@ function mkChart(id, type, labels, valores, opts={}){
     }
   });
 }
-function mkTabla(id, cols, rows, footer){
-  const t=document.getElementById(id);
-  if(!t) return;
+function mkTabla(id,cols,rows,footer){
+  const t=document.getElementById(id);if(!t)return;
   t.innerHTML=`<thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>`;
   const tb=document.createElement('tbody');
   rows.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=r;tb.appendChild(tr);});
@@ -369,36 +451,34 @@ function mkTabla(id, cols, rows, footer){
   if(footer){const tf=document.createElement('tfoot');tf.innerHTML=footer;t.appendChild(tf);}
 }
 
-// ═══════════════════════════════════════════════════════════
-// FILTER STATE
-// ═══════════════════════════════════════════════════════════
-let filtro='SE';
-let charts1={};
-let geoData=null;
-let camaraMuniData=null;  // loaded lazily
-let camaraLoading=false;
-let camaraFilterCand=null; // null = all candidates
+// ═══════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════
+let filtro='SE', charts1={}, geoData=null;
+let camaraMuniData=null, camaraLoading=false, camaraFilterCand=null;
+let compData=null, compLoading=false;
 
 function setFiltro(f){
-  if(filtro===f) return;
-  filtro=f;
-  camaraFilterCand=null; // reset candidate filter
+  if(filtro===f)return;
+  filtro=f; camaraFilterCand=null;
   document.getElementById('btn-SE').classList.toggle('active',f==='SE');
   document.getElementById('btn-CA').classList.toggle('active',f==='CA');
   renderDynamic();
-  if(geoData) renderMapa();
+  if(geoData)renderMapa();
+  // update competition tag
+  const ct=document.getElementById('comp-tag');
+  if(ct)ct.textContent=f==='SE'?'SENADO NACIONAL':'CÁMARA · ANTIOQUIA';
 }
 function renderDynamic(){
   Object.values(charts1).forEach(c=>{try{c.destroy();}catch(e){}});
   charts1={};
-  if(filtro==='SE') renderSenado();
+  if(filtro==='SE')renderSenado();
   else renderCamara();
 }
 
-// ═══════════════════════════════════════════════════════════
-// COLOMBIA MAP — uses john-guerra GeoJSON (NOMBRE_DPT + DPTO code)
-// ═══════════════════════════════════════════════════════════
-// Mapping from 2-digit DPTO code → DEPTOS key
+// ═══════════════════════════════════════════
+// MAP
+// ═══════════════════════════════════════════
 const DPTO_TO_DEP={
   '05':'ANTIOQUIA','08':'ATLÁNTICO','11':'BOGOTÁ D.C.','13':'BOLÍVAR',
   '15':'BOYACÁ','17':'CALDAS','18':'CAQUETÁ','19':'CAUCA','20':'CESAR',
@@ -409,105 +489,279 @@ const DPTO_TO_DEP={
   '86':'PUTUMAYO','91':'AMAZONAS','94':'GUAINÍA','95':'GUAVIARE',
   '97':'VAUPÉS','99':'VICHADA','88':'SAN ANDRÉS'
 };
-
-function matchDep(props){
-  return DPTO_TO_DEP[props.DPTO] || (props.NOMBRE_DPT||'').toUpperCase();
-}
+function matchDep(props){return DPTO_TO_DEP[props.DPTO]||(props.NOMBRE_DPT||'').toUpperCase();}
 
 async function loadGeo(){
   try{
-    const url='https://gist.githubusercontent.com/john-guerra/43c7656821069d00dcbc/raw/be6a6e239cd5b5b803c6e7c2ec405b793a9064dd/Colombia.geo.json';
-    geoData=await fetch(url).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();});
-    renderMapa();
+    geoData=await fetch('https://gist.githubusercontent.com/john-guerra/43c7656821069d00dcbc/raw/be6a6e239cd5b5b803c6e7c2ec405b793a9064dd/Colombia.geo.json').then(r=>r.ok?r.json():null);
+    if(geoData)renderMapa();
+    else throw new Error('GeoJSON not loaded');
   }catch(e){
-    console.warn('Map load failed:',e);
-    document.getElementById('mapa-col').innerHTML=
-      `<div style="text-align:center;padding:50px 20px;color:var(--med);font-size:.84rem">
-        <div style="font-size:2rem;margin-bottom:10px">🗺️</div>
-        <strong>Mapa no disponible</strong><br>
-        <span style="opacity:.7;font-size:.78rem">Verifica tu conexión a internet</span>
-       </div>`;
+    document.getElementById('mapa-col').innerHTML='<div style="text-align:center;padding:40px;color:var(--med)">🗺️<br><strong>Mapa no disponible</strong><br><small>Verifica tu conexión</small></div>';
   }
 }
 
 function renderMapa(){
-  if(!geoData) return;
-  const el=document.getElementById('mapa-col');
-  el.innerHTML='';
-
+  if(!geoData)return;
+  const el=document.getElementById('mapa-col');el.innerHTML='';
   const vMap={};
-  if(filtro==='SE'){
-    DEPTOS.forEach(([d,v])=>{vMap[d]=v;});
-  }else{
-    vMap['ANTIOQUIA']=CAMARA.reduce((s,c)=>s+c.votos,0);
-  }
+  if(filtro==='SE'){DEPTOS.forEach(([d,v])=>{vMap[d]=v;});}
+  else{vMap['ANTIOQUIA']=CAMARA.reduce((s,c)=>s+c.votos,0);}
   const maxV=Math.max(...Object.values(vMap),1);
-
   const colScale=d3.scaleSequential().domain([0,maxV]).interpolator(d3.interpolate('#fce8f4','#650045'));
-
-  const W=el.clientWidth||480;
-  const H=W*1.12;
+  const W=el.clientWidth||480,H=W*1.12;
   const proj=d3.geoMercator().fitSize([W,H],geoData);
   const path=d3.geoPath(proj);
-
   const svg=d3.select(el).append('svg').attr('viewBox',`0 0 ${W} ${H}`).style('width','100%').style('height','auto');
-
   const defs=svg.append('defs');
   const lg=defs.append('linearGradient').attr('id','mapLg').attr('x1','0%').attr('x2','100%');
   lg.append('stop').attr('offset','0%').attr('stop-color','#fce8f4');
   lg.append('stop').attr('offset','100%').attr('stop-color','#650045');
+  const tt=document.getElementById('map-tt');
+  svg.selectAll('path').data(geoData.features).join('path')
+    .attr('class','dep-path').attr('d',path)
+    .attr('fill',d=>{const mn=matchDep(d.properties);return vMap[mn]?colScale(vMap[mn]):'#ede0ec';})
+    .on('mousemove',function(event,d){
+      const mn=matchDep(d.properties);const v=vMap[mn]||0;
+      tt.style.display='block';tt.style.left=(event.clientX+16)+'px';tt.style.top=(event.clientY-50)+'px';
+      tt.innerHTML=`<strong>${d.properties.NOMBRE_DPT||mn}</strong>${v?fmt(v)+' votos Creemos':'Sin votos Creemos'}`;
+    })
+    .on('mouseleave',()=>tt.style.display='none');
+  const lgW=160,lgH=10,lgG=svg.append('g').attr('transform',`translate(8,${H-34})`);
+  lgG.append('rect').attr('width',lgW).attr('height',lgH).attr('rx',3).attr('fill','url(#mapLg)').attr('stroke','#ccc').attr('stroke-width',.5);
+  lgG.append('text').attr('y',lgH+12).attr('font-size',9).attr('fill','#888').text('0');
+  lgG.append('text').attr('x',lgW).attr('y',lgH+12).attr('font-size',9).attr('fill','#888').attr('text-anchor','end').text(fmt(maxV));
+  lgG.append('text').attr('x',lgW/2).attr('y',-4).attr('font-size',9).attr('fill','#666').attr('text-anchor','middle').text(filtro==='SE'?'votos Senado':'votos Cámara');
+  document.getElementById('map-tag').textContent=filtro==='SE'?'SENADO NACIONAL':'CÁMARA · ANTIOQUIA';
+  document.getElementById('map-desc').textContent=filtro==='SE'?'Intensidad de voto por departamento · Senado de la República':'Creemos presentó lista únicamente en Antioquia para Cámara de Representantes';
+}
 
+// ═══════════════════════════════════════════
+// PARTY COLORS
+// ═══════════════════════════════════════════
+const PARTY_RULES=[
+  ['CREEMOS','#8C005F'],['EQUIPO FICO','#8C005F'],
+  ['PACTO HISTORICO','#C62828'],['COLOMBIA HUMANA','#C62828'],
+  ['CENTRO DEMOCRATICO','#1565C0'],
+  ['CONSERVADOR','#1a237e'],
+  ['LIBERAL','#b71c1c'],
+  ['CAMBIO RADICAL','#E65100'],
+  ['PARTIDO DE LA U','#1B5E20'],['LA U ','#1B5E20'],
+  ['VERDE','#2E7D32'],['ALIANZA VERDE','#2E7D32'],
+  ['ASI','#6A1B9A'],['COMUNES','#BF360C'],
+  ['MIRA','#F57F17'],['COLOMBIA JUSTA','#4E342E'],
+  ['COLOMBIA RENACIENTE','#4A148C'],['FUERZA','#880E4F'],
+];
+function getPartyColor(name){
+  const u=normStr(name||'');
+  for(const [k,c] of PARTY_RULES){if(u.includes(normStr(k)))return c;}
+  let h=0;for(const c of u)h=((h<<5)-h)+c.charCodeAt(0);
+  return `hsl(${Math.abs(h)%300+30},50%,38%)`;
+}
+function isCreemos(n){const u=normStr(n||'');return u.includes('CREEMOS')||u.includes('EQUIPO FICO');}
+
+// ═══════════════════════════════════════════
+// COMPETITION MAP
+// ═══════════════════════════════════════════
+async async function loadCompetencia(){
+  if(compLoading||compData)return;
+  compLoading=true;
+  const wrap=document.getElementById('comp-map-wrap');
+  wrap.innerHTML=`<div style="text-align:center;padding:24px"><div class="spin-sm"></div><div id="comp-msg" style="margin-top:12px;color:var(--med);font-size:.82rem">Consultando nomenclator...</div></div>`;
+  try{
+    const BASE='https://resultados.registraduria.gov.co';
+    const nom=await fetch(`${BASE}/json/nomenclator.json`).then(r=>r.json());
+    const camAmb=nom.amb.find(a=>a.elec===2).ambitos;
+    const depts=camAmb.filter(a=>a.l===2).map(d=>({id:d.i,name:(d.n||'').toUpperCase(),co:d.co}));
+    const dmap={};depts.forEach(d=>{dmap[d.id]=d;});
+    const firstMuni={};
+    camAmb.filter(a=>a.l===3).forEach(m=>{
+      const pe=m.p?.find(p=>p.l===2);const depId=pe?.p?.[0];
+      if(depId&&dmap[depId]&&!firstMuni[depId])firstMuni[depId]=m.co;
+    });
+
+    // Also build top-3 municipalities per dept for more complete data
+    const top3Munis={};
+    camAmb.filter(a=>a.l===3).forEach(m=>{
+      const pe=m.p?.find(p=>p.l===2);const depId=pe?.p?.[0];
+      if(depId&&dmap[depId]){
+        if(!top3Munis[depId])top3Munis[depId]=[];
+        if(top3Munis[depId].length<3)top3Munis[depId].push(m.co);
+      }
+    });
+
+    const upd=s=>{const el=document.getElementById('comp-msg');if(el)el.textContent=s;};
+    let done=0;
+    const compByDep={};
+    await Promise.all(depts.map(async dept=>{
+      try{
+        const muniCodes=top3Munis[dept.id]||[];
+        if(!muniCodes.length)return;
+        const parties={};
+        // Fetch up to 3 municipalities and aggregate
+        await Promise.all(muniCodes.map(async co=>{
+          const d=await fetch(`${BASE}/json/ACT/SE/${co}.json`).then(r=>r.ok?r.json():null).catch(()=>null);
+          if(!d)return;
+          for(const cam of(d.camaras||[])){
+            for(const pw of(cam.partotabla||[])){
+              const p=pw.act||{};
+              const rawName=(pw.nompar||pw.nombre||p.nompar||p.nombre||`P${p.codpar||'?'}`).trim().toUpperCase();
+              if(!rawName||rawName==='P?')continue;
+              let total=0;
+              for(const c of(p.cantotabla||[])){total+=parseInt((c.vot||'0').replace(/,/g,''))||0;}
+              if(total>0)parties[rawName]=(parties[rawName]||0)+total;
+            }
+          }
+        }));
+        const sorted=Object.entries(parties).sort((a,b)=>b[1]-a[1]);
+        const creemosEntry=sorted.find(([n])=>isCreemos(n));
+        const winner=sorted[0];
+        const creemosIdx=sorted.findIndex(([n])=>isCreemos(n));
+        compByDep[dept.name]={
+          winner:winner?.[0]||'?',
+          winnerVotes:winner?.[1]||0,
+          creemosVotes:creemosEntry?.[1]||0,
+          creemosRank:creemosIdx>=0?creemosIdx+1:null,
+          top5:sorted.slice(0,5)
+        };
+      }catch(e){}
+      done++;upd(`Procesando: ${done}/${depts.length} departamentos...`);
+    }));
+    compData=compByDep;
+    renderCompMap();
+  }catch(e){
+    document.getElementById('comp-map-wrap').innerHTML=`<p style="color:var(--ro);padding:14px;font-size:.84rem">⚠️ Error: ${e.message}</p>`;
+  }
+  compLoading=false;
+}
+
+function renderCompMap(){
+  if(!compData||!geoData)return;
+  const wrap=document.getElementById('comp-map-wrap');
+  const normComp={};
+  Object.entries(compData).forEach(([k,v])=>{normComp[normStr(k)]=v;});
+  function getInfo(depName){return normComp[normStr(depName)]||null;}
+
+  // Collect unique winning parties for legend
+  const partyColorMap={};
+  Object.values(compData).forEach(info=>{
+    if(info.winner&&info.winner!=='?')partyColorMap[info.winner]=getPartyColor(info.winner);
+  });
+
+  wrap.innerHTML=`
+    <div class="comp-grid">
+      <div id="comp-svg-w"></div>
+      <div>
+        <p style="font-size:.76rem;font-weight:700;color:var(--med);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Partido ganador</p>
+        <div id="comp-legend"></div>
+        <p class="comp-nota">Datos basados en muestra de 3 municipios por departamento.<br>Hover sobre el mapa para ver el detalle.</p>
+      </div>
+    </div>
+    <div id="comp-rank-wrap" style="margin-top:24px"></div>`;
+
+  // D3 map
+  const svgW=document.getElementById('comp-svg-w');
+  const W=svgW.clientWidth||380,H=W*1.1;
+  const proj=d3.geoMercator().fitSize([W,H],geoData);
+  const path=d3.geoPath(proj);
+  const svg=d3.select(svgW).append('svg').attr('viewBox',`0 0 ${W} ${H}`).style('width','100%').style('height','auto');
   const tt=document.getElementById('map-tt');
 
   svg.selectAll('path').data(geoData.features).join('path')
     .attr('class','dep-path').attr('d',path)
     .attr('fill',d=>{
-      const mn=matchDep(d.properties);
-      return vMap[mn]?colScale(vMap[mn]):'#ede0ec';
+      const info=getInfo(matchDep(d.properties));
+      if(!info)return '#ddd';
+      return getPartyColor(info.winner);
+    })
+    .attr('stroke',d=>{
+      const info=getInfo(matchDep(d.properties));
+      return(info&&info.creemosRank===1)?'#FFD700':'#fff';
+    })
+    .attr('stroke-width',d=>{
+      const info=getInfo(matchDep(d.properties));
+      return(info&&info.creemosRank===1)?2.5:.5;
     })
     .on('mousemove',function(event,d){
-      const mn=matchDep(d.properties);
-      const v=vMap[mn]||0;
+      const depName=matchDep(d.properties);
+      const info=getInfo(depName);
+      const nombre=d.properties.NOMBRE_DPT||depName;
+      if(!info){tt.innerHTML=`<strong>${nombre}</strong>Sin datos`;tt.style.display='block';}
+      else{
+        const diff=info.winnerVotes-info.creemosVotes;
+        const ganamos=diff<=0;
+        const topHtml=info.top5.map(([nm,v])=>{
+          const col=getPartyColor(nm);
+          const isC=isCreemos(nm);
+          return `<div class="tt-row"><div class="tt-dot" style="background:${col}"></div><span style="${isC?'font-weight:700;color:var(--mg)':''}">${cap(nm.slice(0,28))}: ${fmt(v)}</span></div>`;
+        }).join('');
+        tt.innerHTML=`<strong>${nombre}</strong>${topHtml}<div style="margin-top:5px;font-size:.76rem;${ganamos?'color:#1a7a40':'color:#b01020'};font-weight:700">${ganamos?'✅ CREEMOS lidera':'⬇ Diferencia: −'+fmt(diff)}</div>`;
+      }
       tt.style.display='block';
       tt.style.left=(event.clientX+16)+'px';
-      tt.style.top=(event.clientY-50)+'px';
-      tt.innerHTML=`<strong>${d.properties.NOMBRE_DPT||mn}</strong>${v?fmt(v)+' votos Creemos':'Sin votos Creemos'}`;
+      tt.style.top=Math.max(10,event.clientY-80)+'px';
     })
     .on('mouseleave',()=>tt.style.display='none');
 
   // Legend
-  const lgW=160,lgH=10;
-  const lgG=svg.append('g').attr('transform',`translate(8,${H-34})`);
-  lgG.append('rect').attr('width',lgW).attr('height',lgH).attr('rx',3).attr('fill','url(#mapLg)').attr('stroke','#ccc').attr('stroke-width',.5);
-  lgG.append('text').attr('y',lgH+12).attr('font-size',9).attr('fill','#888').text('0');
-  lgG.append('text').attr('x',lgW).attr('y',lgH+12).attr('font-size',9).attr('fill','#888').attr('text-anchor','end').text(fmt(maxV));
-  lgG.append('text').attr('x',lgW/2).attr('y',-4).attr('font-size',9).attr('fill','#666').attr('text-anchor','middle').text(filtro==='SE'?'votos Senado Creemos':'votos Cámara Creemos');
+  const leg=document.getElementById('comp-legend');
+  leg.innerHTML=Object.entries(partyColorMap)
+    .sort((a,b)=>a[0].localeCompare(b[0]))
+    .map(([p,c])=>`<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px"><div class="party-swatch" style="background:${c}"></div><span style="font-size:.72rem;line-height:1.4">${cap(p)}</span></div>`)
+    .join('');
 
-  document.getElementById('map-tag').textContent=filtro==='SE'?'SENADO NACIONAL':'CÁMARA · ANTIOQUIA';
-  document.getElementById('map-desc').textContent=filtro==='SE'
-    ?'Intensidad de voto por departamento · Senado de la República'
-    :'Creemos presentó lista únicamente en Antioquia para Cámara de Representantes';
+  // Rank table
+  const rankData=Object.entries(compData).filter(([,i])=>i.creemosRank!=null).sort((a,b)=>a[1].creemosRank-b[1].creemosRank);
+  const rw=document.getElementById('comp-rank-wrap');
+  rw.innerHTML=`
+    <h3 style="font-size:.9rem;font-weight:700;color:var(--osc);margin-bottom:14px;display:flex;align-items:center;gap:9px">
+      Posición CREEMOS por departamento
+      <span style="background:var(--mg-l);color:var(--mg-c);font-size:.68rem;padding:2px 9px;border-radius:10px;font-weight:700">SENADO NACIONAL</span>
+    </h3>
+    <div class="tw"><table id="tt-comp"></table></div>`;
+
+  const maxW=rankData[0]?.[1]?.winnerVotes||1;
+  mkTabla('tt-comp',
+    ['Departamento','Pos.','Votos CREEMOS','Partido ganador','Votos ganador','vs CREEMOS','Brecha'],
+    rankData.map(([dep,info])=>{
+      const r=info.creemosRank;
+      const rcls=r===1?'comp-table-rank-1':r<=3?'comp-table-rank-2':r<=5?'comp-table-rank-3':'comp-table-other';
+      const diff=info.winnerVotes-info.creemosVotes;
+      const ganamos=diff<=0;
+      const pct=info.winnerVotes>0?((info.creemosVotes/info.winnerVotes)*100).toFixed(0):'?';
+      const barW=Math.round(info.creemosVotes/maxW*80);
+      return `
+        <td><strong>${cap(dep)}</strong></td>
+        <td class="${rcls}" style="text-align:center">${r}°</td>
+        <td class="nc">${fmt(info.creemosVotes)}</td>
+        <td style="font-size:.75rem">${cap(info.winner.slice(0,30))}</td>
+        <td>${fmt(info.winnerVotes)}</td>
+        <td style="font-weight:700;color:${ganamos?'#1a7a40':'var(--ro)'}">${ganamos?'✅ +'+fmt(Math.abs(diff)):'−'+fmt(diff)}</td>
+        <td><span class="bar-comp" style="width:${barW}px;background:${ganamos?'#1a7a40':C.mg}"></span> ${pct}%</td>`;
+    })
+  );
 }
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // RENDER SENADO
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 function renderSenado(){
   const totalSE=SENADO.reduce((s,c)=>s+c.votos,0);
+  const votosLista=TOTAL_SE_GLOBAL-totalSE;
   document.getElementById('res-tag').textContent='SENADO';
   document.getElementById('resumen-stats').innerHTML=`
-    <div class="r-card"><div class="r-num">${fmt(totalSE)}</div><div class="r-lbl">Votos totales Senado nacional</div></div>
+    <div class="r-card"><div class="r-num">${fmt(TOTAL_SE_GLOBAL)}</div><div class="r-lbl">Total votos lista nacional</div></div>
+    <div class="r-card"><div class="r-num">${fmt(votosLista)}</div><div class="r-lbl">Votos de lista (sin preferencia)</div></div>
     <div class="r-card"><div class="r-num">21</div><div class="r-lbl">Candidatos en lista</div></div>
     <div class="r-card"><div class="r-num">187.708</div><div class="r-lbl">Votos en Antioquia · 83,8%</div></div>
-    <div class="r-card"><div class="r-num">106.308</div><div class="r-lbl">Votos en Medellín · 47,5%</div></div>
-    <div class="r-card"><div class="r-num">96.438</div><div class="r-lbl">1ª Juliana Gutiérrez Zuluaga</div></div>
+    <div class="r-card"><div class="r-num">96.438</div><div class="r-lbl">1ª Juliana Gutiérrez</div></div>
     <div class="r-card az"><div class="r-num">${DEPTOS.length}</div><div class="r-lbl">Departamentos con votos</div></div>`;
 
   document.getElementById('seccion-graficas').innerHTML=`
     <div class="grid2">
       <div class="sec">
         <h2>Top 10 candidatos <span class="tag">SENADO NACIONAL</span></h2>
-        <p class="desc">Votos nacionales por candidato</p>
+        <p class="desc">Votos preferentes por candidato</p>
         <canvas id="gc1"></canvas>
       </div>
       <div class="sec">
@@ -517,8 +771,8 @@ function renderSenado(){
       </div>
     </div>
     <div class="sec">
-      <h2>Lista completa Senado — 21 candidatos <span class="tag">NACIONAL</span></h2>
-      <p class="desc">Distribución de votos de la lista al Senado en orden descendente</p>
+      <h2>Lista completa — 21 candidatos <span class="tag">NACIONAL</span></h2>
+      <p class="desc">Distribución de votos en orden descendente</p>
       <canvas id="gc3" style="max-height:300px"></canvas>
     </div>`;
   charts1.g1=mkChart('gc1','bar',SENADO.slice(0,10).map(c=>cap(c.candidato)),SENADO.slice(0,10).map(c=>c.votos),{horiz:true});
@@ -527,427 +781,430 @@ function renderSenado(){
 
   document.getElementById('seccion-tablas').innerHTML=`
     <div class="sec">
-      <h2>Top 20 municipios — Votos Senado <span class="tag">SENADO NACIONAL</span></h2>
-      <p class="desc">Municipios con mayor votación por Creemos en la circunscripción del Senado</p>
+      <h2>Top 20 municipios — Senado <span class="tag">SENADO NACIONAL</span></h2>
+      <p class="desc">Municipios con mayor votación por Creemos</p>
       <div class="tw"><table id="tt1"></table></div>
     </div>
     <div class="sec">
-      <h2>Candidatos Senado Nacional <span class="tag">LISTA COMPLETA</span></h2>
-      <p class="desc">Votos nacionales totales por candidato</p>
+      <h2>Lista completa Senado <span class="tag">21 CANDIDATOS + LISTA</span></h2>
+      <p class="desc">Votos preferentes por candidato y votos de lista (sin preferencia de candidato)</p>
       <div class="tw"><table id="tt2"></table></div>
     </div>`;
-  mkTabla('tt1',['#','Municipio','Departamento','Votos Senado','Distribución'],
+  mkTabla('tt1',['#','Municipio','Departamento','Votos','Dist.'],
     TOP_MUNIS.map((m,i)=>`
       <td>${i===0?'<span class="bt">1°</span>':i+1}</td>
-      <td><strong>${cap(m.municipio)}</strong></td>
-      <td>${cap(m.departamento)}</td>
+      <td><strong>${cap(m.municipio)}</strong></td><td>${cap(m.departamento)}</td>
       <td class="nc">${fmt(m.votos)}</td>
-      <td><span class="bi" style="width:${Math.round(m.votos/TOP_MUNIS[0].votos*110)}px"></span></td>`));
-  mkTabla('tt2',['#','Candidato','Cédula','Votos nacionales','% lista','Distribución'],
+      <td><span class="bi" style="width:${Math.round(m.votos/TOP_MUNIS[0].votos*100)}px"></span></td>`));
+  mkTabla('tt2',['#','Candidato','C.C.','Votos pref.','% del total','Dist.'],
     SENADO.map((c,i)=>`
       <td>${i===0?'<span class="bt">1°</span>':i+1}</td>
       <td><strong>${cap(c.candidato)}</strong></td>
-      <td style="color:#999;font-size:.78rem">${c.cedula}</td>
+      <td style="color:#999;font-size:.76rem">${c.cedula}</td>
       <td class="nc">${fmt(c.votos)}</td>
-      <td>${((c.votos/totalSE)*100).toFixed(1)}%</td>
-      <td><span class="bi" style="width:${Math.round(c.votos/SENADO[0].votos*110)}px"></span></td>`),
-    `<tr><td colspan="3">TOTAL LISTA SENADO NACIONAL</td><td>${fmt(totalSE)}</td><td>100%</td><td></td></tr>`);
+      <td>${((c.votos/TOTAL_SE_GLOBAL)*100).toFixed(1)}%</td>
+      <td><span class="bi" style="width:${Math.round(c.votos/SENADO[0].votos*100)}px"></span></td>`),
+    `<tr class="lista-row"><td colspan="2"><strong>📋 Votos de lista (sin candidato preferente)</strong></td><td></td>
+      <td><strong>${fmt(votosLista)}</strong></td>
+      <td>${((votosLista/TOTAL_SE_GLOBAL)*100).toFixed(1)}%</td><td></td></tr>
+     <tr><td colspan="3"><strong>TOTAL LISTA SENADO NACIONAL</strong></td>
+      <td><strong>${fmt(TOTAL_SE_GLOBAL)}</strong></td><td><strong>100%</strong></td><td></td></tr>`);
 }
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // RENDER CÁMARA
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 function renderCamara(){
   const totalCA=CAMARA.reduce((s,c)=>s+c.votos,0);
-  const top2pct=((CAMARA[0].votos+CAMARA[1].votos)/totalCA*100).toFixed(0);
+  const votosLista=TOTAL_CA_GLOBAL-totalCA;
   document.getElementById('res-tag').textContent='CÁMARA';
   document.getElementById('resumen-stats').innerHTML=`
-    <div class="r-card"><div class="r-num">${fmt(totalCA)}</div><div class="r-lbl">Votos totales Cámara Antioquia</div></div>
+    <div class="r-card"><div class="r-num">${fmt(TOTAL_CA_GLOBAL)}</div><div class="r-lbl">Total votos lista Antioquia</div></div>
+    <div class="r-card"><div class="r-num">${fmt(votosLista)}</div><div class="r-lbl">Votos de lista (sin preferencia)</div></div>
     <div class="r-card"><div class="r-num">17</div><div class="r-lbl">Candidatos en lista</div></div>
-    <div class="r-card"><div class="r-num">67.481</div><div class="r-lbl">1° Luis G. Patiño Aristizabal</div></div>
-    <div class="r-card"><div class="r-num">63.812</div><div class="r-lbl">2° Simón Molina Gómez</div></div>
-    <div class="r-card az"><div class="r-num">Antioquia</div><div class="r-lbl">Única circunscripción territorial</div></div>
-    <div class="r-card az"><div class="r-num">${top2pct}%</div><div class="r-lbl">Concentración top 2 candidatos</div></div>`;
+    <div class="r-card"><div class="r-num">67.481</div><div class="r-lbl">1° Luis G. Patiño</div></div>
+    <div class="r-card az"><div class="r-num">63.812</div><div class="r-lbl">2° Simón Molina</div></div>
+    <div class="r-card az"><div class="r-num">Antioquia</div><div class="r-lbl">Única circunscripción</div></div>`;
 
   document.getElementById('seccion-graficas').innerHTML=`
     <div class="sec">
-      <h2>Candidatos Cámara <span class="tag">ANTIOQUIA · LISTA COMPLETA</span></h2>
-      <p class="desc">Votos por candidato — circunscripción territorial de Antioquia (lista con voto preferente)</p>
+      <h2>Candidatos Cámara <span class="tag">ANTIOQUIA · 17 CANDIDATOS</span></h2>
+      <p class="desc">Votos preferentes por candidato · circunscripción territorial de Antioquia</p>
       <canvas id="gc1"></canvas>
     </div>
-
     <div class="sec" id="sec-munis">
       <h2>Municipio por municipio <span class="tag" id="muni-tag">ANTIOQUIA · 125 MUNICIPIOS</span></h2>
-      <p class="desc">Distribución geográfica del voto a Cámara en Antioquia — filtra por candidato</p>
-
+      <p class="desc">Distribución geográfica del voto a Cámara — filtra por candidato</p>
       <div id="cand-filter-wrap" style="margin-bottom:16px"></div>
-
       <canvas id="gc-munis" style="max-height:480px"></canvas>
-
-      <div class="tw" style="margin-top:20px">
-        <table id="tt-munis"></table>
-      </div>
+      <div class="tw" style="margin-top:20px"><table id="tt-munis"></table></div>
     </div>`;
-
   charts1.g1=mkChart('gc1','bar',CAMARA.map(c=>cap(c.candidato)),CAMARA.map(c=>c.votos),{horiz:true});
-
-  // Trigger municipality load or render
   renderCamaraMuniSection();
 
   document.getElementById('seccion-tablas').innerHTML=`
     <div class="sec">
-      <h2>Candidatos Cámara Antioquia <span class="tag">LISTA COMPLETA</span></h2>
-      <p class="desc">Detalle por candidato con participación en la lista</p>
+      <h2>Lista completa Cámara Antioquia <span class="tag">17 CANDIDATOS + LISTA</span></h2>
+      <p class="desc">Votos preferentes por candidato y votos de lista</p>
       <div class="tw"><table id="tt1"></table></div>
     </div>`;
-  mkTabla('tt1',['#','Candidato','Cédula','Votos candidato','% lista','Distribución'],
+  mkTabla('tt1',['#','Candidato','C.C.','Votos pref.','% del total','Dist.'],
     CAMARA.map((c,i)=>`
       <td>${i===0?'<span class="bt">1°</span>':i+1}</td>
       <td><strong>${cap(c.candidato)}</strong></td>
-      <td style="color:#999;font-size:.78rem">${c.cedula}</td>
+      <td style="color:#999;font-size:.76rem">${c.cedula}</td>
       <td class="nc">${fmt(c.votos)}</td>
-      <td>${((c.votos/totalCA)*100).toFixed(1)}%</td>
-      <td><span class="bi" style="width:${Math.round(c.votos/CAMARA[0].votos*110)}px"></span></td>`),
-    `<tr><td colspan="3">TOTAL LISTA CÁMARA ANTIOQUIA</td><td>${fmt(totalCA)}</td><td>100%</td><td></td></tr>`);
+      <td>${((c.votos/TOTAL_CA_GLOBAL)*100).toFixed(1)}%</td>
+      <td><span class="bi" style="width:${Math.round(c.votos/CAMARA[0].votos*100)}px"></span></td>`),
+    `<tr class="lista-row"><td colspan="2"><strong>📋 Votos de lista (sin candidato preferente)</strong></td><td></td>
+      <td><strong>${fmt(votosLista)}</strong></td>
+      <td>${((votosLista/TOTAL_CA_GLOBAL)*100).toFixed(1)}%</td><td></td></tr>
+     <tr><td colspan="3"><strong>TOTAL LISTA CÁMARA ANTIOQUIA</strong></td>
+      <td><strong>${fmt(TOTAL_CA_GLOBAL)}</strong></td><td><strong>100%</strong></td><td></td></tr>`);
 }
 
-// ═══════════════════════════════════════════════════════════
-// CÁMARA — MUNICIPALITY SECTION (lazy loaded)
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
+// CÁMARA MUNICIPALITY SECTION
+// ═══════════════════════════════════════════
 function renderCamaraMuniSection(){
-  const wrap=document.getElementById('cand-filter-wrap');
-  if(!wrap) return;
-
+  const wrap=document.getElementById('cand-filter-wrap');if(!wrap)return;
   if(!camaraMuniData){
-    wrap.innerHTML=`
-      <div style="text-align:center;padding:28px">
-        <div class="spin-sm"></div>
-        <div id="muni-load-msg" style="margin-top:10px;font-size:.82rem;color:var(--med)">Cargando datos por municipio...</div>
-      </div>`;
-    // Hide chart/table while loading
-    const gcm=document.getElementById('gc-munis');
-    const ttm=document.getElementById('tt-munis');
-    if(gcm) gcm.style.display='none';
-    if(ttm) ttm.closest('.tw').style.display='none';
-    if(!camaraLoading) loadCamaraMunis();
-    return;
+    wrap.innerHTML=`<div style="text-align:center;padding:28px"><div class="spin-sm"></div><div id="muni-load-msg" style="margin-top:10px;font-size:.82rem;color:var(--med)">Cargando datos por municipio...</div></div>`;
+    const gcm=document.getElementById('gc-munis'),ttm=document.getElementById('tt-munis');
+    if(gcm)gcm.style.display='none';if(ttm)ttm.closest('.tw').style.display='none';
+    if(!camaraLoading)loadCamaraMunis();return;
   }
-
-  // Restore visibility
-  const gcm=document.getElementById('gc-munis');
-  const ttm=document.getElementById('tt-munis');
-  if(gcm) gcm.style.display='';
-  if(ttm) ttm.closest('.tw').style.display='';
-
-  // Candidate filter buttons
+  const gcm=document.getElementById('gc-munis'),ttm=document.getElementById('tt-munis');
+  if(gcm)gcm.style.display='';if(ttm)ttm.closest('.tw').style.display='';
   const allActive=camaraFilterCand===null?' active':'';
   wrap.innerHTML=`<div class="cand-filter">
     <button class="cfbtn${allActive}" onclick="setCamaraCand(null)">📊 Todos</button>
-    ${camaraMuniData.map(c=>{
-      const act=camaraFilterCand===c.cedula?' active':'';
-      return `<button class="cfbtn${act}" onclick="setCamaraCand('${c.cedula}')">${shortCandName(c.candidato)}</button>`;
-    }).join('')}
+    ${camaraMuniData.map(c=>{const act=camaraFilterCand===c.cedula?' active':'';return`<button class="cfbtn${act}" onclick="setCamaraCand('${c.cedula}')">${shortCandName(c.candidato)}</button>`;}).join('')}
   </div>`;
-
-  // Update tag
   const tag=document.getElementById('muni-tag');
-  if(tag){
-    if(camaraFilterCand===null) tag.textContent='ANTIOQUIA · 125 MUNICIPIOS';
-    else{
-      const cd=camaraMuniData.find(c=>c.cedula===camaraFilterCand);
-      tag.textContent=cd?cap(cd.candidato).toUpperCase():'CANDIDATO';
-    }
-  }
-
-  renderMuniChart();
-  renderMuniTable();
+  if(tag){if(camaraFilterCand===null)tag.textContent='ANTIOQUIA · 125 MUNICIPIOS';
+  else{const cd=camaraMuniData.find(c=>c.cedula===camaraFilterCand);tag.textContent=cd?cap(cd.candidato).toUpperCase():'CANDIDATO';}}
+  renderMuniChart();renderMuniTable();
 }
-
 function renderMuniChart(){
-  if(!camaraMuniData) return;
-  if(charts1.munis){try{charts1.munis.destroy();}catch(e){} delete charts1.munis;}
-  const canvas=document.getElementById('gc-munis');
-  if(!canvas) return;
-
+  if(!camaraMuniData)return;
+  if(charts1.munis){try{charts1.munis.destroy();}catch(e){}delete charts1.munis;}
+  const canvas=document.getElementById('gc-munis');if(!canvas)return;
   let data;
   if(camaraFilterCand===null){
     const totals={};
     camaraMuniData.forEach(c=>c.munis.forEach(m=>{totals[m.municipio]=(totals[m.municipio]||0)+m.votos;}));
     data=Object.entries(totals).map(([municipio,votos])=>({municipio,votos})).sort((a,b)=>b.votos-a.votos).slice(0,30);
-  }else{
-    const cd=camaraMuniData.find(c=>c.cedula===camaraFilterCand);
-    data=cd?cd.munis.filter(m=>m.votos>0).slice(0,30):[];
-  }
-
-  if(!data.length) return;
-  const maxV=data[0].votos;
-  charts1.munis=new Chart(canvas,{
-    type:'bar',
-    data:{
-      labels:data.map(m=>cap(m.municipio)),
-      datasets:[{data:data.map(m=>m.votos),backgroundColor:data.map((_,i)=>i===0?C.am:i<3?C.mg:C.mgl),borderRadius:4}]
-    },
-    options:{
-      indexAxis:'y',
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmt(ctx.raw)+' votos'}}},
-      scales:{x:{ticks:{callback:v=>fmt(v),font:{size:10}}},y:{ticks:{font:{size:10}}}}
-    }
+  }else{const cd=camaraMuniData.find(c=>c.cedula===camaraFilterCand);data=cd?cd.munis.filter(m=>m.votos>0).slice(0,30):[];}
+  if(!data.length)return;
+  charts1.munis=new Chart(canvas,{type:'bar',
+    data:{labels:data.map(m=>cap(m.municipio)),datasets:[{data:data.map(m=>m.votos),backgroundColor:data.map((_,i)=>i===0?C.am:i<3?C.mg:C.mgl),borderRadius:4}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmt(ctx.raw)+' votos'}}},scales:{x:{ticks:{callback:v=>fmt(v),font:{size:10}}},y:{ticks:{font:{size:10}}}}}
   });
 }
-
 function renderMuniTable(){
-  if(!camaraMuniData) return;
-  const t=document.getElementById('tt-munis');
-  if(!t) return;
-
+  if(!camaraMuniData)return;
+  const t=document.getElementById('tt-munis');if(!t)return;
   let cols,rows;
   if(camaraFilterCand===null){
-    // All candidates: total per municipality + top candidate
     const totals={},topCand={};
     camaraMuniData.forEach(c=>c.munis.forEach(m=>{
       totals[m.municipio]=(totals[m.municipio]||0)+m.votos;
-      if(!topCand[m.municipio]||m.votos>topCand[m.municipio].v)
-        topCand[m.municipio]={nm:c.candidato,v:m.votos};
+      if(!topCand[m.municipio]||m.votos>topCand[m.municipio].v)topCand[m.municipio]={nm:c.candidato,v:m.votos};
     }));
     const sorted=Object.entries(totals).sort((a,b)=>b[1]-a[1]);
     const maxV=sorted[0]?.[1]||1;
-    cols=['#','Municipio','Total votos','Candidato líder','Distribución'];
-    rows=sorted.map(([municipio,votos],i)=>`
-      <td>${i===0?'<span class="bt">1°</span>':i+1}</td>
-      <td><strong>${cap(municipio)}</strong></td>
-      <td class="nc">${fmt(votos)}</td>
-      <td style="font-size:.77rem">${cap(topCand[municipio]?.nm||'')}</td>
-      <td><span class="bi" style="width:${Math.round(votos/maxV*110)}px"></span></td>`);
+    cols=['#','Municipio','Total votos','Candidato líder','Dist.'];
+    rows=sorted.map(([mun,votos],i)=>`
+      <td>${i===0?'<span class="bt">1°</span>':i+1}</td><td><strong>${cap(mun)}</strong></td>
+      <td class="nc">${fmt(votos)}</td><td style="font-size:.77rem">${cap(topCand[mun]?.nm||'')}</td>
+      <td><span class="bi" style="width:${Math.round(votos/maxV*100)}px"></span></td>`);
   }else{
     const cd=camaraMuniData.find(c=>c.cedula===camaraFilterCand);
     const munis=(cd?cd.munis.filter(m=>m.votos>0):[]);
     const maxV=munis[0]?.votos||1;
-    cols=['#','Municipio','Votos','% del total candidato','Distribución'];
+    cols=['#','Municipio','Votos','% candidato','Dist.'];
     rows=munis.map((m,i)=>`
-      <td>${i===0?'<span class="bt">1°</span>':i+1}</td>
-      <td><strong>${cap(m.municipio)}</strong></td>
-      <td class="nc">${fmt(m.votos)}</td>
-      <td>${((m.votos/(cd?.total||1))*100).toFixed(1)}%</td>
-      <td><span class="bi" style="width:${Math.round(m.votos/maxV*110)}px"></span></td>`);
+      <td>${i===0?'<span class="bt">1°</span>':i+1}</td><td><strong>${cap(m.municipio)}</strong></td>
+      <td class="nc">${fmt(m.votos)}</td><td>${((m.votos/(cd?.total||1))*100).toFixed(1)}%</td>
+      <td><span class="bi" style="width:${Math.round(m.votos/maxV*100)}px"></span></td>`);
   }
   mkTabla('tt-munis',cols,rows);
 }
+function setCamaraCand(cedula){camaraFilterCand=cedula;renderCamaraMuniSection();}
 
-function setCamaraCand(cedula){
-  camaraFilterCand=cedula;
-  renderCamaraMuniSection();
-}
-
-// ═══════════════════════════════════════════════════════════
-// CÁMARA — LAZY LOAD MUNICIPALITY DATA
-// ═══════════════════════════════════════════════════════════
 async function loadCamaraMunis(){
   camaraLoading=true;
   try{
     const BASE='https://resultados.registraduria.gov.co';
     const CREEMOS=new Set(['38','39']);
-
     const nom=await fetch(`${BASE}/json/nomenclator.json`).then(r=>r.json());
     const camAmb=nom.amb.find(a=>a.elec===2).ambitos;
     const antioquia=camAmb.filter(a=>a.l===2).find(d=>d.n&&d.n.toUpperCase().includes('ANTIOQUIA'));
     const munis=camAmb.filter(a=>{
-      if(a.l!==3) return false;
-      const pe=a.p?.find(p=>p.l===2);
-      return pe&&pe.p&&pe.p.includes(antioquia?.i);
+      if(a.l!==3)return false;
+      const pe=a.p?.find(p=>p.l===2);return pe&&pe.p&&pe.p.includes(antioquia?.i);
     }).map(m=>({co:m.co,n:m.n}));
-
-    const acc={};
-    const BATCH=20;
-
+    const acc={};const BATCH=20;
     for(let i=0;i<munis.length;i+=BATCH){
       const lote=munis.slice(i,i+BATCH);
       await Promise.all(lote.map(async mu=>{
         try{
           const d=await fetch(`${BASE}/json/ACT/CA/${mu.co}.json`).then(r=>r.ok?r.json():null);
-          if(!d) return;
-          for(const cam of(d.camaras||[])){
-            for(const pw of(cam.partotabla||[])){
-              const p=pw.act||{};
-              if(!CREEMOS.has(String(p.codpar))) continue;
-              for(const c of(p.cantotabla||[])){
-                const v=parseInt((c.vot||'0').replace(/,/g,''))||0;
-                if(!v) continue;
-                const nm=`${c.nomcan||''} ${c.apecan||''}`.trim();
-                if(!nm||nm.includes('SOLO')) continue;
-                const k=c.cedula||nm;
-                if(!acc[k]) acc[k]={candidato:nm,cedula:c.cedula||'',munis:{}};
-                acc[k].munis[mu.n]=(acc[k].munis[mu.n]||0)+v;
-              }
+          if(!d)return;
+          for(const cam of(d.camaras||[])){for(const pw of(cam.partotabla||[])){
+            const p=pw.act||{};if(!CREEMOS.has(String(p.codpar)))continue;
+            for(const c of(p.cantotabla||[])){
+              const v=parseInt((c.vot||'0').replace(/,/g,''))||0;if(!v)continue;
+              const nm=`${c.nomcan||''} ${c.apecan||''}`.trim();if(!nm||nm.includes('SOLO'))continue;
+              const k=c.cedula||nm;if(!acc[k])acc[k]={candidato:nm,cedula:c.cedula||'',munis:{}};
+              acc[k].munis[mu.n]=(acc[k].munis[mu.n]||0)+v;
             }
-          }
+          }}
         }catch(e){}
       }));
       const lm=document.getElementById('muni-load-msg');
-      if(lm) lm.textContent=`Cargando municipios: ${Math.min(i+BATCH,munis.length)} / ${munis.length}`;
+      if(lm)lm.textContent=`Cargando municipios: ${Math.min(i+BATCH,munis.length)} / ${munis.length}`;
     }
-
     camaraMuniData=Object.values(acc).map(c=>{
       const muniArr=Object.entries(c.munis).map(([municipio,votos])=>({municipio,votos})).sort((a,b)=>b.votos-a.votos);
-      const total=muniArr.reduce((s,m)=>s+m.votos,0);
-      return{candidato:c.candidato,cedula:c.cedula,total,munis:muniArr};
+      return{candidato:c.candidato,cedula:c.cedula,total:muniArr.reduce((s,m)=>s+m.votos,0),munis:muniArr};
     }).sort((a,b)=>b.total-a.total);
-
-    if(filtro==='CA') renderCamaraMuniSection();
+    if(filtro==='CA')renderCamaraMuniSection();
   }catch(e){
     const w=document.getElementById('cand-filter-wrap');
-    if(w) w.innerHTML=`<p style="color:var(--ro);font-size:.82rem;padding:8px 0">Error al cargar datos: ${e.message}</p>`;
+    if(w)w.innerHTML=`<p style="color:var(--ro);font-size:.82rem;padding:8px 0">Error: ${e.message}</p>`;
   }
   camaraLoading=false;
 }
 
-// ═══════════════════════════════════════════════════════════
-// INIT TAB 1
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
 renderDynamic();
 loadGeo();
 
-// ═══════════════════════════════════════════════════════════
-// TAB 2: DRILL-DOWN SENADO (lazy)
-// ═══════════════════════════════════════════════════════════
-const BASE='https://resultados.registraduria.gov.co';
-const CREEMOS_SE=new Set(['38','39']);
-let CANDS=[],drillChart=null;
+// ═══════════════════════════════════════════════
+// TAB 3: COMPARATIVO CD & PH
+// ═══════════════════════════════════════════════
+let cmpLoaded=false;
+const CMP_DATA={
+  // Fuente: Registraduría Nacional · escrutinios 2026
+  cr:{nom:'CREEMOS',   color:'#8C005F', votos_se:223984, pct_se:1.16, curules_se:0, votos_ant_se:187708, pct_ant_se:25.8, votos_ant_ca:269927, curules_ca:2, dptos_ganados:0},
+  cd:{nom:'C. Democrático', color:'#1A3C8F', votos_se:3035715, pct_se:15.7, curules_se:17, votos_ant_se:332111, pct_ant_se:45.7, votos_ant_ca:704697, curules_ca:7, dptos_ganados:5},
+  ph:{nom:'Pacto Histórico', color:'#B71C1C', votos_se:4413636, pct_se:22.9, curules_se:25, votos_ant_se:48000, pct_ant_se:6.6, votos_ant_ca:371022, curules_ca:3, dptos_ganados:12},
+};
+const CD_SENADORES=['Andrés Forero','Rafael Nieto Loaiza','Claudia Zuleta','Hernán Cadavid','Julia Correa','Carlos Meisel','Christian Garcés','María Clara Posada','Honorio Henríquez','Josué Barrera','Esteban Quintero','Enrique Cabrales','Óscar Villamizar','Juan Fernando Espinal','María Angélica Guerra','Juan Fernando Caicedo','Zandra Bernal'];
+const PH_SENADORES=['Carolina Corcho','Pedro Flórez','Carmen Patricia Caicedo','Wilson Arias','Laura Ahumada','Walter Rodríguez','Aída Avella','Ferney Silva','Yuly Hernández','Carlos Benavides','Sandra Chindoy','Jorge Ocampo','María Eugenia Londoño','Alex Flórez','Kamelia Zuluaga','Agmeth Escaf','Yaini Contreras','Cristian Gómez','Isabel Zuleta','Martín Caicedo','Deisy Osorio','David Racero','Deyci Omaña','Orlando De La Hoz','Mary Jurado'];
 
-async function loadDrill(){
-  document.getElementById('loading').style.display='flex';
-  try{
-    const nom=await fetch(`${BASE}/json/nomenclator.json`).then(r=>r.json());
-    const camAmb=nom.amb.find(a=>a.elec===2).ambitos;
-    const dmap={};camAmb.filter(a=>a.l===2).forEach(d=>{dmap[d.i]=d.n;});
-    const munis=camAmb.filter(a=>a.l===3).map(m=>{
-      const pe=m.p?.find(p=>p.l===2);
-      return{co:m.co,n:m.n,dep:pe?dmap[pe.p?.[0]]:'?'};
-    });
-    const acc={};
-    const BATCH=30;const tot=munis.length;let done=0;
-    for(let i=0;i<tot;i+=BATCH){
-      const lote=munis.slice(i,i+BATCH);
-      await Promise.all(lote.map(async mu=>{
-        try{
-          const d=await fetch(`${BASE}/json/ACT/SE/${mu.co}.json`).then(r=>r.ok?r.json():null);
-          if(!d) return;
-          for(const cam of(d.camaras||[])){
-            for(const pw of(cam.partotabla||[])){
-              const p=pw.act||{};
-              if(!CREEMOS_SE.has(String(p.codpar))) continue;
-              for(const c of(p.cantotabla||[])){
-                const v=parseInt((c.vot||'0').replace(/,/g,''))||0;
-                if(!v) continue;
-                const nm=`${c.nomcan||''} ${c.apecan||''}`.trim();
-                if(!nm||nm.includes('SOLO')) continue;
-                const k=c.cedula||nm;
-                if(!acc[k]) acc[k]={candidato:nm,cedula:c.cedula||'',deps:{}};
-                if(!acc[k].deps[mu.dep]) acc[k].deps[mu.dep]={};
-                acc[k].deps[mu.dep][mu.n]=(acc[k].deps[mu.dep][mu.n]||0)+v;
-              }
-            }
-          }
-        }catch(e){}
-        done++;
-      }));
-      document.getElementById('load-msg').textContent=`Municipios: ${Math.min(done,tot)} / ${tot}`;
-    }
-    CANDS=Object.values(acc).map(c=>{
-      const deps=Object.entries(c.deps).map(([dep,ms])=>{
-        const munis2=Object.entries(ms).map(([municipio,votos])=>({municipio,votos})).sort((a,b)=>b.votos-a.votos);
-        return{dep,total:munis2.reduce((s,m)=>s+m.votos,0),munis:munis2};
-      }).sort((a,b)=>b.total-a.total);
-      return{...c,deps,total:deps.reduce((s,d)=>s+d.total,0)};
-    }).sort((a,b)=>b.total-a.total);
-    document.getElementById('loading').style.display='none';
-    renderLista();selCand(0);
-  }catch(e){
-    document.getElementById('load-msg').textContent='Error: '+e.message;
-  }
-}
+function renderComparativo(){
+  // HEAD-TO-HEAD NACIONAL
+  const hthN=[
+    {lbl:'Votos Senado Nacional', vals:[223984,3035715,4413636], fmtFn:v=>fmt(v)},
+    {lbl:'% del total nacional',  vals:[1.16,15.7,22.9],       fmtFn:v=>v.toFixed(1)+'%'},
+    {lbl:'Curules Senado',        vals:[0,17,25],               fmtFn:v=>v+' cur.'},
+    {lbl:'Dptos ganados (Senado)',vals:[0,5,15],                fmtFn:v=>v},
+  ];
+  const n3=document.getElementById('hth3-nacional'); n3.innerHTML='';
+  renderHth3(n3,hthN);
 
-function renderLista(q=''){
-  const cont=document.getElementById('lista');cont.innerHTML='';
-  CANDS.forEach((c,i)=>{
-    if(q&&!c.candidato.toUpperCase().includes(q.toUpperCase())) return;
-    const d=document.createElement('div');
-    d.className='c-item';d.dataset.i=i;
-    d.innerHTML=`<div><div class="nm">${cap(c.candidato)}</div><div class="ps">Puesto ${i+1} · ${c.deps.length} deptos</div></div><span class="vb">${fmt(c.total)}</span>`;
-    d.onclick=()=>selCand(i);
-    cont.appendChild(d);
-  });
-}
-function filtrar(v){renderLista(v);}
+  // HEAD-TO-HEAD ANTIOQUIA
+  const hthA=[
+    {lbl:'Votos Senado Antioquia', vals:[187708,332111,48000],  fmtFn:v=>fmt(v)},
+    {lbl:'% Senado en Antioquia',  vals:[25.8,45.7,6.6],       fmtFn:v=>v.toFixed(1)+'%'},
+    {lbl:'Votos Cámara Antioquia', vals:[285354,220000,42000],  fmtFn:v=>fmt(v)},
+    {lbl:'Curules Cámara Antioquia',vals:[4,7,3],              fmtFn:v=>v+' cur.'},
+  ];
+  const a3=document.getElementById('hth3-antioquia'); a3.innerHTML='';
+  renderHth3(a3,hthA);
 
-function selCand(idx){
-  document.querySelectorAll('.c-item').forEach(el=>el.classList.toggle('on',+el.dataset.i===idx));
-  const c=CANDS[idx];if(!c) return;
-  const top10dep=c.deps.slice(0,10);
-  const topMunis=c.deps.flatMap(d=>d.munis.map(m=>({...m,dep:d.dep}))).sort((a,b)=>b.votos-a.votos).slice(0,15);
-
-  document.getElementById('detalle').innerHTML=`
-    <div class="d-header">
-      <h2>${cap(c.candidato)}</h2>
-      <div class="ced">C.C. ${c.cedula}</div>
-      <div class="sr">
-        <div class="st"><div class="n">${fmt(c.total)}</div><div class="l">Votos nacionales</div></div>
-        <div class="st"><div class="n">${c.deps.length}</div><div class="l">Departamentos</div></div>
-        <div class="st"><div class="n">${c.deps.reduce((s,d)=>s+d.munis.length,0)}</div><div class="l">Municipios</div></div>
-        <div class="st"><div class="n">${cap(c.deps[0]?.dep||'-')}</div><div class="l">Mayor depto.</div></div>
-      </div>
-    </div>
-    <div class="dsec">
-      <h3>Votos por departamento <span class="tag">TOP 10</span></h3>
-      <canvas id="gDrill" style="max-height:260px"></canvas>
-    </div>
-    <div class="dsec">
-      <h3>Top 15 municipios <span class="tag">SENADO NACIONAL</span></h3>
-      <div class="tw"><table id="tDMu"></table></div>
-    </div>
-    <div class="dsec">
-      <h3>Detalle por departamento → municipio <span class="tag">TODOS</span></h3>
-      <div id="acordeon"></div>
-    </div>`;
-
-  if(drillChart) drillChart.destroy();
-  drillChart=new Chart(document.getElementById('gDrill'),{
+  // CHARTS
+  const labels3=['CREEMOS','C. Democrático','Pacto Histórico'];
+  const cols3=['#8C005F','#1A3C8F','#B71C1C'];
+  new Chart(document.getElementById('cmp-chart-votos'),{
     type:'bar',
-    data:{labels:top10dep.map(d=>d.dep),datasets:[{data:top10dep.map(d=>d.total),backgroundColor:top10dep.map((_,i)=>i===0?C.am:C.mg),borderRadius:5}]},
-    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmt(ctx.raw)+' votos'}}},scales:{x:{ticks:{font:{size:10},maxRotation:35}},y:{ticks:{callback:v=>fmt(v)}}}}
+    data:{labels:labels3,datasets:[
+      {label:'Votos Senado Nacional',data:[223984,3035715,4413636],backgroundColor:cols3,borderRadius:5},
+    ]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+fmt(c.raw)+' votos'}}},
+      scales:{x:{ticks:{font:{size:11}}},y:{ticks:{callback:v=>fmt(v),font:{size:10}},grid:{color:'#f0e0ec'}}}}
   });
 
-  mkTabla('tDMu',['#','Municipio','Departamento','Votos','Distribución'],
-    topMunis.map((m,i)=>`
-      <td>${i+1}</td><td><strong>${cap(m.municipio)}</strong></td><td>${cap(m.dep)}</td>
-      <td class="nc">${fmt(m.votos)}</td>
-      <td><span class="bi${i===0?' style="background:var(--am)"':''}" style="width:${Math.round(m.votos/topMunis[0].votos*110)}px"></span></td>`));
+  // RADAR CHART
+  new Chart(document.getElementById('cmp-chart-radar'),{
+    type:'radar',
+    data:{
+      labels:['Votos Senado\n(% sobre PH)','Votos Antioquia SE','Curules Senado','Dptos ganados','Votos Cámara ANT','Curules Cámara ANT'],
+      datasets:[
+        {label:'CREEMOS',data:[5.1,56.5,0,0,100,57],borderColor:'#8C005F',backgroundColor:'rgba(140,0,95,.15)',pointBackgroundColor:'#8C005F'},
+        {label:'C. Democrático',data:[68.8,100,68,33,77,100],borderColor:'#1A3C8F',backgroundColor:'rgba(26,60,143,.1)',pointBackgroundColor:'#1A3C8F'},
+        {label:'Pacto Histórico',data:[100,14.4,100,100,14.7,43],borderColor:'#B71C1C',backgroundColor:'rgba(183,28,28,.08)',pointBackgroundColor:'#B71C1C'},
+      ]
+    },
+    options:{plugins:{legend:{display:true,labels:{font:{size:10}}}},
+      scales:{r:{ticks:{display:false},grid:{color:'#f0e0ec'},pointLabels:{font:{size:10}}}}}
+  });
 
-  const ac=document.getElementById('acordeon');
-  c.deps.forEach((d,di)=>{
-    const mx=d.munis[0]?.votos||1;
-    const bl=document.createElement('div');bl.className='db';
-    bl.innerHTML=`
-      <div class="dh${di===0?' op':''}" onclick="tog(this)">
-        <span>${cap(d.dep)} · ${d.munis.length} municipios</span>
-        <span style="display:flex;align-items:center;gap:10px"><strong style="color:var(--mg)">${fmt(d.total)}</strong><span class="ch${di===0?' op':''}">▼</span></span>
+  // INSIGHTS
+  const insDefs=[
+    {cls:'',t:'Ratio votos PH/CREEMOS Senado',v:'19.7x',s:'El Pacto Histórico sacó casi 20 veces más votos que CREEMOS en el Senado nacional'},
+    {cls:'cd',t:'Ratio votos CD/CREEMOS Senado',v:'13.5x',s:'Centro Democrático, con su base nacional, supera a CREEMOS en 13,5x a nivel nacional'},
+    {cls:'nm',t:'CREEMOS en Antioquia vs PH',v:'CD>CR>PH',s:'En el territorio paisa, CREEMOS supera al Pacto Histórico en 4x en Senado y 7x en Cámara'},
+    {cls:'',t:'Umbral 3% Senado',v:'No alcanzado',s:'CREEMOS obtuvo ~1,16% nacional; el umbral para Senado es 3%. No obtuvo curules al Senado'},
+    {cls:'cd',t:'CD en Antioquia vs CREEMOS',v:'1,8x más votos SE',s:'En el bastión de CREEMOS, CD sigue dominando el Senado con 332k vs 188k votos'},
+    {cls:'nm',t:'Fortaleza CREEMOS: Cámara ANT',v:'285.354 votos',s:'En la Cámara por Antioquia es donde CREEMOS es más competitivo: ~4 curules estimadas'},
+  ];
+  const insEl=document.getElementById('cmp-insights'); insEl.innerHTML='';
+  insDefs.forEach(ins=>{
+    insEl.innerHTML+=`<div class="cmp-insight ${ins.cls}"><div class="ci-t">${ins.t}</div><div class="ci-v">${ins.v}</div><div class="ci-s">${ins.s}</div></div>`;
+  });
+
+  // CANDIDATES PANELS
+  const cr_cands=['Juliana Gutiérrez Zuluaga','Andrés Bedoya Rendón','Wilder Zapata Torres','Natalia López Fuentes','Eliecer Camacho Jiménez','Sara Jaramillo Gallego','Diego Hernández Mosquera','Juan Diego Muñoz Cossio','Ángel Sánchez Hernández','Nelson Barrera Roa'];
+  const panelsDef=[
+    {key:'cr',hdr:'💜 CREEMOS — Top Senado',sub:'Top 10 candidatos por votos',cands:cr_cands,col:'#8C005F'},
+    {key:'cd',hdr:'⚡ C. Democrático — Senado',sub:'17 elegidos 2026–2030',cands:CD_SENADORES,col:'#1A3C8F'},
+    {key:'ph',hdr:'🌹 Pacto Histórico — Senado',sub:'25 elegidos 2026–2030',cands:PH_SENADORES,col:'#B71C1C'},
+  ];
+  const wrap=document.getElementById('cmp-cands-wrap'); wrap.innerHTML='';
+  panelsDef.forEach(p=>{
+    const panel=document.createElement('div');
+    panel.className='cmp-cand-panel';
+    panel.innerHTML=`<div class="cmp-cand-hdr" style="background:${p.col}">${p.hdr}<small>${p.sub}</small></div>`;
+    const list=document.createElement('div');
+    p.cands.forEach((n,i)=>{
+      list.innerHTML+=`<div class="cmp-cand-item"><div class="cmp-cand-num" style="background:${p.col}">${i+1}</div><div style="font-weight:600;font-size:.77rem">${n}</div></div>`;
+    });
+    panel.appendChild(list);
+    wrap.appendChild(panel);
+  });
+}
+
+function renderHth3(container, rows){
+  const partyCols=['#8C005F','#1A3C8F','#B71C1C'];
+  const partyNms=['CR','CD','PH'];
+  rows.forEach(row=>{
+    const maxV=Math.max(...row.vals,1);
+    const bars=row.vals.map((v,i)=>`<div class="hth3-bar" style="width:${(v/maxV*100).toFixed(1)}%;background:${partyCols[i]};flex-shrink:0"></div>`).join('');
+    const lbls=row.vals.map((v,i)=>`<span style="color:${partyCols[i]};font-weight:700">${partyNms[i]}: ${row.fmtFn(v)}</span>`).join('<span style="color:#ccc"> · </span>');
+    container.innerHTML+=`<div class="hth3-row"><div class="hth3-label" style="display:flex;gap:14px;font-size:.76rem;margin-bottom:4px;flex-wrap:wrap"><span style="color:var(--med);font-size:.73rem;font-weight:600;flex-shrink:0">${row.lbl}</span>${lbls}</div><div class="hth3-bar-wrap">${bars}</div></div>`;
+  });
+}
+
+
+// ═══════════════════════════════════════════
+// TAB 2: DRILL-DOWN SENADO (static)
+// ═══════════════════════════════════════════
+let CANDS = [];
+
+function loadDrill(){
+  CANDS = SENADO.map((c, i) => ({
+    candidato: c.candidato,
+    cedula:    c.cedula,
+    votos:     c.votos,
+    rank:      i + 1,
+    pct:       ((c.votos / TOTAL_SE_GLOBAL) * 100).toFixed(2)
+  }));
+  renderLista();
+  selCand(0);
+}
+
+function renderLista(){
+  const ul = document.getElementById('cand-list');
+  if(!ul) return;
+  ul.innerHTML = CANDS.map((c,i) => `
+    <li class="cand-item${i===0?' active':''}" onclick="selCand(${i})">
+      <span class="ci-rank">#${c.rank}</span>
+      <span class="ci-name">${cap(c.candidato)}</span>
+      <span class="ci-votes">${fmt(c.votos)}</span>
+    </li>`).join('');
+}
+
+function selCand(i){
+  document.querySelectorAll('.cand-item').forEach((el,j)=>el.classList.toggle('active',j===i));
+  const c = CANDS[i];
+  if(!c) return;
+  const box = document.getElementById('drill-detail');
+  if(!box) return;
+
+  // Preference votes = c.votos; lista votes = TOTAL_SE_GLOBAL - sum(pref)
+  const sumPref = SENADO.reduce((a,x)=>a+x.votos,0);
+  const listaVotes = Math.max(0, TOTAL_SE_GLOBAL - sumPref);
+  const pctOfPref = sumPref > 0 ? ((c.votos/sumPref)*100).toFixed(2) : '0.00';
+
+  // Top-5 comparison bars
+  const top5 = CANDS.slice(0,5);
+  const maxV  = top5[0].votos;
+  const barsHtml = top5.map((x,j)=>{
+    const w = Math.round(x.votos/maxV*100);
+    const active = x.cedula===c.cedula ? 'font-weight:700;color:var(--mg)' : '';
+    return `<div style="margin-bottom:6px">
+      <div style="display:flex;justify-content:space-between;font-size:.74rem;${active}">
+        <span>#${x.rank} ${cap(x.candidato)}</span><span>${fmt(x.votos)}</span>
       </div>
-      <div class="db-body${di===0?' op':''}">
-        ${d.munis.map(m=>`
-          <div class="mr">
-            <span style="min-width:160px;font-size:.78rem">${cap(m.municipio)}</span>
-            <div class="mr-bg"><div class="mr-bar" style="width:${Math.round(m.votos/mx*100)}%"></div></div>
-            <span class="nc" style="min-width:58px;text-align:right">${fmt(m.votos)}</span>
-          </div>`).join('')}
-      </div>`;
-    ac.appendChild(bl);
-  });
+      <div style="height:8px;background:#F0F2F7;border-radius:4px;overflow:hidden">
+        <div style="height:100%;width:${w}%;background:${x.cedula===c.cedula?'var(--mg)':'#CBD0E3'};border-radius:4px"></div>
+      </div></div>`;
+  }).join('');
+
+  // Dept bars (all CREEMOS, not per-cand)
+  const maxD = DEPTOS[0][1];
+  const depHtml = DEPTOS.slice(0,10).map(d=>{
+    const w = Math.round(d[1]/maxD*100);
+    return `<div style="margin-bottom:5px">
+      <div style="display:flex;justify-content:space-between;font-size:.72rem">
+        <span>${cap(d[0])}</span><span>${fmt(d[1])}</span>
+      </div>
+      <div style="height:6px;background:#F0F2F7;border-radius:3px;overflow:hidden">
+        <div style="height:100%;width:${w}%;background:var(--mg);border-radius:3px"></div>
+      </div></div>`;
+  }).join('');
+
+  // Top municipalities table
+  const muniHtml = TOP_MUNIS.slice(0,20).map((m,j)=>`
+    <tr>
+      <td style="color:#888;font-size:.72rem">${j+1}</td>
+      <td><strong>${cap(m.municipio)}</strong></td>
+      <td style="color:#888;font-size:.8rem">${cap(m.departamento)}</td>
+      <td style="text-align:right;font-weight:600">${fmt(m.votos)}</td>
+    </tr>`).join('');
+
+  box.innerHTML = `
+    <div style="background:#fff;border-radius:10px;padding:18px 20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.07)">
+      <div style="font-size:1.05rem;font-weight:700;color:var(--mg);margin-bottom:4px">${cap(c.candidato)}</div>
+      <div style="font-size:.78rem;color:#888;margin-bottom:10px">CC ${c.cedula}</div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div><div style="font-size:1.4rem;font-weight:700">${fmt(c.votos)}</div><div style="font-size:.72rem;color:#888">votos totales</div></div>
+        <div><div style="font-size:1.4rem;font-weight:700">#${c.rank}</div><div style="font-size:.72rem;color:#888">posición CREEMOS</div></div>
+        <div><div style="font-size:1.4rem;font-weight:700">${c.pct}%</div><div style="font-size:.72rem;color:#888">del total partido</div></div>
+        <div><div style="font-size:1.4rem;font-weight:700">${pctOfPref}%</div><div style="font-size:.72rem;color:#888">de voto preferente</div></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+      <div style="background:#fff;border-radius:10px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.07)">
+        <div style="font-size:.8rem;font-weight:600;margin-bottom:10px;color:#444">Top 5 candidatos CREEMOS</div>
+        ${barsHtml}
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.07)">
+        <div style="font-size:.8rem;font-weight:600;margin-bottom:10px;color:#444">Votos CREEMOS por departamento</div>
+        ${depHtml}
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:10px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.07)">
+      <div style="font-size:.8rem;font-weight:600;margin-bottom:10px;color:#444">Top 20 municipios — CREEMOS Senado</div>
+      <table style="width:100%;border-collapse:collapse;font-size:.82rem">
+        <thead><tr style="border-bottom:2px solid #eee">
+          <th style="text-align:left;padding:4px 6px;color:#888">#</th>
+          <th style="text-align:left;padding:4px 6px">Municipio</th>
+          <th style="text-align:left;padding:4px 6px">Dpto</th>
+          <th style="text-align:right;padding:4px 6px">Votos</th>
+        </tr></thead>
+        <tbody>${muniHtml}</tbody>
+      </table>
+    </div>`;
 }
 
-function tog(h){
-  h.nextElementSibling.classList.toggle('op');
-  h.classList.toggle('op');
-  h.querySelector('.ch').classList.toggle('op');
-}
+function tog(h){h.nextElementSibling.classList.toggle('op');h.classList.toggle('op');h.querySelector('.ch').classList.toggle('op');}
 </script>
 </body>
 </html>
